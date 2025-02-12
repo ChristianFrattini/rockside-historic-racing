@@ -19,8 +19,23 @@ import {
   DropdownMenuTrigger,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  console.log(user);
+
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    return redirect("/");
+  }
+
   return (
     <div
       className={"flex w-full flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"}
@@ -79,7 +94,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <DropdownMenuContent align={"end"}>
             <DropdownMenuLabel>Admin Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <LogoutLink>Logout</LogoutLink>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
