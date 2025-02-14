@@ -28,7 +28,7 @@ export default function AdminPage() {
       </div>
 
       <div className={"grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-2"}>
-        <Card>
+        <Card className={"bg-slate-100"}>
           <CardHeader className={"flex flex-row items-center gap-3 pb-2 "}>
             <CarFront className={"h-8 w-8"} />
             <CardTitle> Vehicles</CardTitle>
@@ -53,7 +53,7 @@ export default function AdminPage() {
           </CardContent>
           <CardFooter className={"flex items-center justify-center"}>
             <Button className={"group"}>
-              View Full Spare Parts List{" "}
+              View Full Vehicles List{" "}
               <ChevronRight
                 className={"h-5 w-5  group-hover:translate-x-1 duration-200"}
               />
@@ -61,7 +61,7 @@ export default function AdminPage() {
           </CardFooter>
         </Card>
 
-        <Card>
+        <Card className={"bg-slate-100"}>
           <CardHeader className={"flex flex-row items-center pb-2 gap-3"}>
             <Cog className={"h-8 w-8"} />
             <CardTitle>Spare Parts</CardTitle>

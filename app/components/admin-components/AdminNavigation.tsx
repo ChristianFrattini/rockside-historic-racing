@@ -13,17 +13,17 @@ const links = [
   },
   {
     name: "Vehicles",
-    href: "/dashboard/vehicles",
+    href: "/admin/vehicles",
     icon: CarFront,
   },
   {
     name: "Spare Parts",
-    href: "/dashboard/spares",
+    href: "/admin/spares",
     icon: Cog,
   },
   {
     name: "Banner Picture(s)",
-    href: "/dashboard/banner",
+    href: "/admin/banner",
     icon: Images,
   },
 ];
