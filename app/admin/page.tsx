@@ -13,6 +13,7 @@ import {
   Cog,
   Images,
 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export default function AdminPage() {
@@ -52,11 +53,13 @@ export default function AdminPage() {
             </p>
           </CardContent>
           <CardFooter className={"flex items-center justify-center"}>
-            <Button className={"group"}>
-              View Full Vehicles List{" "}
-              <ChevronRight
-                className={"h-5 w-5  group-hover:translate-x-1 duration-200"}
-              />
+            <Button className={"group"} asChild>
+              <Link href={"/admin/vehicles/"}>
+                View Full Vehicles List{" "}
+                <ChevronRight
+                  className={"h-5 w-5  group-hover:translate-x-1 duration-200"}
+                />
+              </Link>
             </Button>
           </CardFooter>
         </Card>

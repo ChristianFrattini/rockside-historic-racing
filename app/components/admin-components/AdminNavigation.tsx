@@ -42,7 +42,7 @@ export default function AdminNavigation() {
               "flex items-center gap-2",
               link.href === pathname
                 ? "text-white font-semibold bg-slate-800 p-3 rounded-lg"
-                : "text-muted-foreground hover:text-foreground",
+                : "text-muted-foreground hover:text-foreground duration-150",
             )}
           >
             <Icon className="w-5 h-5" /> {/* Render the icon */}

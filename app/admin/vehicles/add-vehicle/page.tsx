@@ -46,33 +46,34 @@ export default function AddNewVehicle() {
             Please, fill in the form and click on Save to add new vehicle.
           </CardDescription>
         </CardHeader>
-        <CardContent className={"bg-slate-100 rounded-t-lg w-[80%] py-3"}>
+        <CardContent className={"bg-slate-100 rounded-t-lg py-3"}>
           <div className={"flex flex-col gap-6"}>
-            <div className={"flex flex-col gap-3"}>
-              <Label>Name</Label>
-              <Input
-                type={"text"}
-                className={"w-full"}
-                placeholder={"Enter the Name of the vehicle"}
-              />
-            </div>
+            <div className={"flex flex-col lg:flex-row justify-between gap-3"}>
+              <div className={"flex flex-col gap-3 w-full"}>
+                <Label>Name</Label>
+                <Input
+                  type={"text"}
+                  className={"w-full"}
+                  placeholder={"Enter the Name of the vehicle"}
+                />
+              </div>
 
-            <div className={"flex flex-col gap-3"}>
-              <Label>Brand</Label>
-              <Input
-                type={"text"}
-                className={"w-full"}
-                placeholder={"Enter the Name of the vehicle"}
-              />
-            </div>
-
-            <div className={"flex flex-col gap-3"}>
-              <Label>Year</Label>
-              <Input
-                type={"number"}
-                className={"w-full"}
-                placeholder={"1961"}
-              />
+              <div className={"flex flex-col gap-3 w-full"}>
+                <Label>Brand</Label>
+                <Input
+                  type={"text"}
+                  className={"w-full"}
+                  placeholder={"Enter the Name"}
+                />
+              </div>
+              <div className={"flex flex-col gap-3 w-full"}>
+                <Label>Year</Label>
+                <Input
+                  type={"number"}
+                  className={"w-full"}
+                  placeholder={"1961"}
+                />
+              </div>
             </div>
 
             <div className={"flex flex-col gap-3"}>
@@ -114,7 +115,7 @@ export default function AddNewVehicle() {
           </div>
         </CardContent>
         <CardFooter
-          className={"flex pt-3  rounded-b-lg justify-end w-[80%] bg-slate-100"}
+          className={"flex pt-3  rounded-b-lg justify-end bg-slate-100"}
         >
           <Button>Save</Button>
         </CardFooter>
