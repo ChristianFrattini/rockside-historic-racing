@@ -22,6 +22,7 @@ import {
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { Toaster } from "@/components/ui/toaster";
 
 export default async function AdminLayout({
   children,
@@ -100,7 +101,10 @@ export default async function AdminLayout({
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
-      <main className={"my-5"}>{children}</main>
+      <main className={"my-5"}>
+        {children}
+        <Toaster />
+      </main>
     </div>
   );
 }

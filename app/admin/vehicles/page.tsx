@@ -1,3 +1,4 @@
+import prisma from "@/app/lib/db";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -15,10 +17,31 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PlusCircle, SquarePen, Trash2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function Vehicles() {
+async function getData() {
+  const data = await prisma.vehicle.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return data;
+}
+
+export default async function Vehicles() {
+  const data = await getData();
+
+  const formatDate = (isoString: Date): string => {
+    const date = new Date(isoString);
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
   return (
     <>
       <div className={"flex items-center justify-end"}>
@@ -43,7 +66,7 @@ export default function Vehicles() {
           <Table>
             <TableHeader className={"bg-slate-100"}>
               <TableRow>
-                <TableHead className={"w-[100px]"}>Image</TableHead>
+                <TableHead className={"w-[100]px]"}>Image</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Brand</TableHead>
                 <TableHead>Year</TableHead>
@@ -54,23 +77,34 @@ export default function Vehicles() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell>BOINK</TableCell>
-                <TableCell>BOINK</TableCell>
-                <TableCell>BOINK</TableCell>
-                <TableCell>BOINK</TableCell>
-                <TableCell>BOINK</TableCell>
-                <TableCell>BOINK</TableCell>
-                <TableCell>BOINK</TableCell>
-                <TableCell className={"text-end"}>
-                  <Button variant={"ghost"} size={"icon"}>
-                    <SquarePen className={"h-3 w-3 text-blue-600"} />
-                  </Button>
-                  <Button variant={"ghost"} size={"icon"}>
-                    <Trash2 className={"h-3 w-3 text-red-600"} />
-                  </Button>
-                </TableCell>
-              </TableRow>
+              {data.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>
+                    <Image
+                      alt={`image${item.id}`}
+                      src={item.images[0]}
+                      height={70}
+                      width={70}
+                      className={"rounded-md object-cover h-20 w-20"}
+                    />
+                  </TableCell>
+                  <TableCell>{item.name}</TableCell>
+
+                  <TableCell>{item.brand}</TableCell>
+                  <TableCell>{item.year}</TableCell>
+                  <TableCell>{item.status}</TableCell>
+                  <TableCell>{formatDate(item.createdAt)}</TableCell>
+                  <TableCell>VIEW</TableCell>
+                  <TableCell className={"text-end"}>
+                    <Button variant={"ghost"} size={"icon"}>
+                      <SquarePen className={"h-3 w-3 text-blue-600"} />
+                    </Button>
+                    <Button variant={"ghost"} size={"icon"}>
+                      <Trash2 className={"h-3 w-3 text-red-600"} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </CardContent>
