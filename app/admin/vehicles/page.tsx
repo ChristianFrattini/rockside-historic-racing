@@ -94,13 +94,19 @@ export default async function Vehicles() {
                   <TableCell>{item.year}</TableCell>
                   <TableCell>{item.status}</TableCell>
                   <TableCell>{formatDate(item.createdAt)}</TableCell>
-                  <TableCell>VIEW</TableCell>
+                  <TableCell>
+                    <Button variant={"outline"}>View</Button>
+                  </TableCell>
                   <TableCell className={"text-end"}>
-                    <Button variant={"ghost"} size={"icon"}>
-                      <SquarePen className={"h-3 w-3 text-blue-600"} />
+                    <Button variant={"ghost"} size={"icon"} asChild>
+                      <Link href={`/admin/vehicles/${item.id}`}>
+                        <SquarePen className={"h-3 w-3 text-blue-600"} />
+                      </Link>
                     </Button>
                     <Button variant={"ghost"} size={"icon"}>
-                      <Trash2 className={"h-3 w-3 text-red-600"} />
+                      <Link href={`/admin/vehicles/${item.id}/delete`}>
+                        <Trash2 className={"h-3 w-3 text-red-600"} />
+                      </Link>
                     </Button>
                   </TableCell>
                 </TableRow>
