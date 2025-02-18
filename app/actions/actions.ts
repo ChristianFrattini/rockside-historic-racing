@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
 import { VehicleSchema } from "../lib/zodSchemas";
 import prisma from "../lib/db";
+import { utDeleteImage } from "../lib/uploadthingDelete/imageDelete";
 
 export async function addVehicle(previousState: unknown, formData: FormData) {
   const { getUser } = getKindeServerSession();
@@ -92,11 +93,37 @@ export async function deleteVehicle(formData: FormData) {
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");
   }
+  const vehicleId = formData.get("vehicleId") as string;
 
-  await prisma.vehicle.delete({
-    where: {
-      id: formData.get("vehicleId") as string,
-    },
-  });
-  redirect("/admin/vehicles");
+  try {
+    // **1. Fetch the vehicle to get images**
+    const vehicle = await prisma.vehicle.findUnique({
+      where: { id: vehicleId },
+      select: { images: true }, // Adjust field name if necessary
+    });
+
+    if (!vehicle) {
+      throw new Error("Vehicle not found");
+    }
+
+    const images = vehicle.images as string[]; // Assuming images are stored as an array of URLs
+    console.log(images);
+
+    // **2. Delete images sequentially**
+    for (const image of images) {
+      //console.log(image);
+      await utDeleteImage(image);
+    }
+
+    // **3. Delete the vehicle after images are removed**
+    await prisma.vehicle.delete({
+      where: { id: vehicleId },
+    });
+
+    //console.log("Vehicle and associated images deleted successfully");
+  } catch (error) {
+    console.error("Error deleting vehicle or images:", error);
+    return redirect("/admin/vehicles?error=deletion_failed");
+  }
+  return redirect("/admin/vehicles");
 }

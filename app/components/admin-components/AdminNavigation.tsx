@@ -39,10 +39,10 @@ export default function AdminNavigation() {
             key={link.href}
             href={link.href}
             className={cn(
-              "flex items-center gap-2",
+              "flex items-center gap-1",
               link.href === pathname
                 ? "text-white font-semibold bg-slate-800 p-3 rounded-lg"
-                : "text-muted-foreground hover:text-foreground duration-150",
+                : "text-muted-foreground hover:text-foreground duration-150 p-3",
             )}
           >
             <Icon className="w-5 h-5" /> {/* Render the icon */}

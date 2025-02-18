@@ -11,7 +11,10 @@ import {
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function Delete({ params }: { params: { id: string } }) {
+export const dynamicParams = true; //possibly to remove
+
+export default async function Delete({ params }: { params: { id: string } }) {
+  const { id } = await params;
   return (
     <div className={"h-[80vh] w-full flex items-center justify-center"}>
       <Card className={"max-w-xl"}>
@@ -30,7 +33,7 @@ export default function Delete({ params }: { params: { id: string } }) {
           </Button>
 
           <form action={deleteVehicle}>
-            <input type={"hidden"} name={"vehicleId"} value={params.id} />
+            <input type={"hidden"} name={"vehicleId"} value={id} />
             <SubmitButton
               loadingText={"DELETING"}
               text={"DELETE"}
