@@ -16,3 +16,8 @@ export const VehicleSchema = z.object({
   images: z.array(z.string()).min(1, "At least one image is required"),
   isFeatured: z.boolean().optional(),
 });
+
+export const bannerSchema = z.object({
+  title: z.string(),
+  imageString: z.string(),
+});

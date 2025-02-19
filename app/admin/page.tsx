@@ -89,7 +89,8 @@ export default function AdminPage() {
           </CardContent>
           <CardFooter className={"flex items-center justify-center"}>
             <Button className={"group"}>
-              View Full Spare Parts List{" "}
+              <Link href={"/admin/spares"}>View Full Spare Parts List</Link>
+
               <ChevronRight
                 className={"h-5 w-5  group-hover:translate-x-1 duration-200"}
               />

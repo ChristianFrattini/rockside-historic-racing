@@ -3,7 +3,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
-import { VehicleSchema } from "../lib/zodSchemas";
+import { bannerSchema, VehicleSchema } from "../lib/zodSchemas";
 import prisma from "../lib/db";
 import { utDeleteImage } from "../lib/uploadthingDelete/imageDelete";
 
@@ -35,7 +35,7 @@ export async function addVehicle(previousState: unknown, formData: FormData) {
       brand: submission.value.brand,
       year: submission.value.year,
       description: submission.value.description,
-      isFeatured: submission.value.isFeatured,
+      isFeatured: submission.value.isFeatured === true ? true : false,
       status: submission.value.status,
       images: flattenUrls,
     },
@@ -67,7 +67,7 @@ export async function editVehicle(prevState: unknown, formData: FormData) {
 
   const vehicleId = formData.get("vehicleId") as string;
 
-  console.log("Ecooloooo" + vehicleId);
+  //console.log("Ecooloooo" + vehicleId);
   await prisma.vehicle.update({
     where: {
       id: vehicleId,
@@ -126,4 +126,69 @@ export async function deleteVehicle(formData: FormData) {
     return redirect("/admin/vehicles?error=deletion_failed");
   }
   return redirect("/admin/vehicles");
+}
+
+export async function createBanner(prevState: unknown, formData: FormData) {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    return redirect("/");
+  }
+
+  const submission = parseWithZod(formData, { schema: bannerSchema });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+  await prisma.banner.create({
+    data: {
+      title: submission.value.title,
+      imageString: submission.value.imageString,
+    },
+  });
+
+  redirect("/admin/banner/");
+}
+
+export async function deleteBanner(formData: FormData) {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    return redirect("/");
+  }
+  const bannerId = formData.get("bannerId") as string;
+
+  try {
+    // **1. Fetch the vehicle to get images**
+    const banner = await prisma.banner.findUnique({
+      where: { id: bannerId },
+      select: { imageString: true }, // Adjust field name if necessary
+    });
+
+    if (!banner) {
+      throw new Error("Vehicle not found");
+    }
+
+    const image = banner.imageString as string;
+    // console.log(images);
+
+    // **2. Delete image**
+
+    await utDeleteImage(image);
+
+    // **3. Delete the vehicle after images are removed**
+    await prisma.banner.delete({
+      where: { id: bannerId },
+    });
+
+    //console.log("Vehicle and associated images deleted successfully");
+  } catch (error) {
+    console.error("Error deleting vehicle or images:", error);
+    return redirect("/admin/vehicles?error=deletion_failed");
+  }
+  return redirect("/admin/banner");
 }

@@ -69,11 +69,6 @@ export default function AddNewVehicle() {
   return (
     <form id={form.id} onSubmit={form.onSubmit} action={action}>
       <div className={"flex items-center gap-4"}>
-        <Button variant={"outline"} size={"icon"} asChild>
-          <Link href={"/admin/vehicles/"}>
-            <ChevronLeft className={"w-4 h-4"} />
-          </Link>
-        </Button>
         <h1 className={"text-xl font-semibold tracking-wide"}>
           Add New Vehicle
         </h1>
@@ -237,8 +232,22 @@ export default function AddNewVehicle() {
           </div>
         </CardContent>
         <CardFooter
-          className={"flex pt-3  rounded-b-lg justify-end bg-slate-100"}
+          className={"flex pt-3  rounded-b-lg justify-between bg-slate-100 "}
         >
+          <Button
+            variant={"destructive"}
+            asChild
+            className={"flex items-center justify-center group"}
+          >
+            <Link href={"/admin/vehicles"} className="flex items-center">
+              <ChevronLeft
+                className={
+                  "h-5 w-5 transition-transform group-hover:-translate-x-1 duration-150"
+                }
+              />
+              <span>Return</span>
+            </Link>
+          </Button>
           <SubmitButton text={"Save"} loadingText={"Saving"} />
         </CardFooter>
       </Card>
