@@ -58,12 +58,6 @@ export default function AddNewBanner() {
   };
   return (
     <form id={form.id} onSubmit={form.onSubmit} action={action}>
-      <div className={"flex items-center gap-x-4"}>
-        <h1 className={"text-xl font-semibold tracking-tight"}>
-          Create new Banner
-        </h1>
-      </div>
-
       <Card className={"mt-5 border-none shadow-none "}>
         <CardHeader>
           <CardTitle>Create a new Banner</CardTitle>

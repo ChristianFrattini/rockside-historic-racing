@@ -68,15 +68,9 @@ export default function AddNewVehicle() {
 
   return (
     <form id={form.id} onSubmit={form.onSubmit} action={action}>
-      <div className={"flex items-center gap-4"}>
-        <h1 className={"text-xl font-semibold tracking-wide"}>
-          Add New Vehicle
-        </h1>
-      </div>
-
       <Card className={"mt-5 border-none shadow-none "}>
         <CardHeader>
-          <CardTitle>Vehicle Details</CardTitle>
+          <CardTitle>Create New Vehicle</CardTitle>
           <CardDescription>
             Please, fill in the form and click on Save to add new vehicle.
           </CardDescription>
