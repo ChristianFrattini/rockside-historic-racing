@@ -21,3 +21,14 @@ export const bannerSchema = z.object({
   title: z.string(),
   imageString: z.string(),
 });
+
+export const spareSchema = z.object({
+  name: z.string().refine((val) => /^[A-Z]/.test(val), {
+    message: "Name must start with a capital letter",
+  }),
+  status: z.enum(["draft", "published", "archived"]),
+  category: z.string(),
+  description: z.string(),
+  isFeatured: z.boolean().optional(),
+  images: z.array(z.string()).min(1, "At least one image is required"),
+});

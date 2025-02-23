@@ -1,3 +1,4 @@
+import prisma from "@/app/lib/db";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,8 +18,19 @@ import {
 import { PlusCircle, SquarePen, Trash2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
-export default function Spares() {
+async function getData() {
+  const data = await prisma.spare.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return data;
+}
+
+export default async function Spares() {
+  const data = await getData();
   const formatDate = (isoString: Date): string => {
     const date = new Date(isoString);
     return date.toLocaleDateString("en-GB", {
@@ -42,9 +54,9 @@ export default function Spares() {
 
       <Card className={"mt-5"}>
         <CardHeader>
-          <CardTitle>Your Vehicles</CardTitle>
+          <CardTitle>Your Spare Parts</CardTitle>
           <CardDescription>
-            Manage your vehicles and view their details
+            Manage your spares and view their details
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -61,29 +73,40 @@ export default function Spares() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell>NAME</TableCell>
+              {data.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>
+                    <Image
+                      alt={`image${item.id}`}
+                      src={item.images[0]}
+                      height={70}
+                      width={70}
+                      className={"rounded-md object-cover h-20 w-20"}
+                    />
+                  </TableCell>
+                  <TableCell>{item.name}</TableCell>
 
-                <TableCell>CATEGORY</TableCell>
-                <TableCell>STATUS</TableCell>
-                <TableCell>{}CREATED AT</TableCell>
-                <TableCell>
-                  <Button variant={"outline"}>View</Button>
-                </TableCell>
-                <TableCell className={"text-end"}>
-                  <Button variant={"ghost"} size={"icon"} asChild>
-                    <Link href={`/admin/vehicles/`}>
-                      <SquarePen className={"h-3 w-3 text-blue-600"} />
-                    </Link>
-                  </Button>
-                  <Button variant={"ghost"} size={"icon"}>
-                    <Link href={`/admin/vehicles//delete`}>
-                      <Trash2 className={"h-3 w-3 text-red-600"} />
-                    </Link>
-                  </Button>
-                </TableCell>
-              </TableRow>
+                  <TableCell>{item.category}</TableCell>
+
+                  <TableCell>{item.status}</TableCell>
+                  <TableCell>{formatDate(item.createdAt)}</TableCell>
+                  <TableCell>
+                    <Button variant={"outline"}>View</Button>
+                  </TableCell>
+                  <TableCell className={"text-end"}>
+                    <Button variant={"ghost"} size={"icon"} asChild>
+                      <Link href={`/admin/spares/${item.id}`}>
+                        <SquarePen className={"h-3 w-3 text-blue-600"} />
+                      </Link>
+                    </Button>
+                    <Button variant={"ghost"} size={"icon"}>
+                      <Link href={`/admin/spares/${item.id}/delete`}>
+                        <Trash2 className={"h-3 w-3 text-red-600"} />
+                      </Link>
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </CardContent>

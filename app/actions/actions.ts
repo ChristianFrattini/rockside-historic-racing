@@ -3,7 +3,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
-import { bannerSchema, VehicleSchema } from "../lib/zodSchemas";
+import { bannerSchema, spareSchema, VehicleSchema } from "../lib/zodSchemas";
 import prisma from "../lib/db";
 import { utDeleteImage } from "../lib/uploadthingDelete/imageDelete";
 
@@ -191,4 +191,125 @@ export async function deleteBanner(formData: FormData) {
     return redirect("/admin/vehicles?error=deletion_failed");
   }
   return redirect("/admin/banner");
+}
+
+export async function addSpare(previousState: unknown, formData: FormData) {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    return redirect("/");
+  }
+
+  const submission = parseWithZod(formData, {
+    schema: spareSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  const flattenUrls =
+    submission.value.images?.flatMap((urlString) =>
+      urlString.split(",").map((url) => url.trim()),
+    ) || [];
+
+  console.log(submission.value);
+  console.log(prisma.spare);
+
+  await prisma.spare.create({
+    data: {
+      name: submission.value.name,
+      category: submission.value.category,
+      description: submission.value.description,
+      isFeatured: submission.value.isFeatured === true ? true : false,
+      status: submission.value.status,
+      images: flattenUrls,
+    },
+  });
+
+  redirect("/admin/spares");
+}
+
+export async function deleteSpare(formData: FormData) {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    return redirect("/");
+  }
+  const spareId = formData.get("spareId") as string;
+
+  try {
+    // **1. Fetch the vehicle to get images**
+    const spare = await prisma.spare.findUnique({
+      where: { id: spareId },
+      select: { images: true }, // Adjust field name if necessary
+    });
+
+    if (!spare) {
+      throw new Error("Vehicle not found");
+    }
+
+    const images = spare.images as string[]; // Assuming images are stored as an array of URLs
+    console.log(images);
+
+    // **2. Delete images sequentially**
+    for (const image of images) {
+      //console.log(image);
+      await utDeleteImage(image);
+    }
+
+    // **3. Delete the vehicle after images are removed**
+    await prisma.spare.delete({
+      where: { id: spareId },
+    });
+
+    //console.log("Vehicle and associated images deleted successfully");
+  } catch (error) {
+    console.error("Error deleting vehicle or images:", error);
+    return redirect("/admin/vehicles?error=deletion_failed");
+  }
+  return redirect("/admin/spares/");
+}
+
+export async function editSpare(prevState: unknown, formData: FormData) {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    return redirect("/");
+  }
+
+  const submission = parseWithZod(formData, {
+    schema: spareSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  const flattenUrls = submission.value.images.flatMap((urlString) =>
+    urlString.split(",").map((url) => url.trim()),
+  );
+
+  const spareId = formData.get("spareId") as string;
+
+  await prisma.spare.update({
+    where: {
+      id: spareId,
+    },
+    data: {
+      name: submission.value.name,
+      category: submission.value.category,
+      description: submission.value.description,
+      isFeatured: submission.value.isFeatured === true ? true : false,
+      status: submission.value.status,
+      images: flattenUrls,
+    },
+  });
+  redirect("/admin/spares/");
 }

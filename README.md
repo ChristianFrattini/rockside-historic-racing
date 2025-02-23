@@ -1,5 +1,6 @@
 TODO
 
-start spare parts form DONE
-create actions and link frm to db
+create actions and link frm to db DONE
+add validation messages on spare form
+
 implement search bar?

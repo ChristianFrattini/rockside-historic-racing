@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
+import React, { useActionState, useState } from "react";
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
 import { ChevronLeft, XIcon } from "lucide-react";
@@ -27,11 +27,46 @@ import { useToast } from "@/hooks/use-toast";
 import SubmitButton from "@/app/components/SubmitButton";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { addSpare } from "@/app/actions/actions";
+import { useForm } from "@conform-to/react";
+import { parseWithZod } from "@conform-to/zod";
+import { spareSchema } from "@/app/lib/zodSchemas";
+import { utDeleteImage } from "@/app/lib/uploadthingDelete/imageDelete";
 
 export default function AddNewSpare() {
   const { toast } = useToast();
+  const [lastResult, action] = useActionState(addSpare, undefined);
+  const [form, fields] = useForm({
+    lastResult,
+    onValidate({ formData }) {
+      return parseWithZod(formData, { schema: spareSchema });
+    },
+    shouldValidate: "onBlur",
+    shouldRevalidate: "onInput",
+  });
+
+  const [images, setImages] = useState<string[]>([]);
+
+  const handleDelete = async (index: number) => {
+    setImages(images.filter((_, i) => i !== index));
+
+    const res = await utDeleteImage(images[index]);
+    //console.log(res);
+    if (res.success) {
+      toast({
+        title: "Image deleted successfully",
+        description:
+          "The image has been removed successfully from the database ",
+      });
+    } else {
+      toast({
+        title: "Ops... Something went wrong",
+        description: "Something went wrong. Please, try again",
+      });
+    }
+  };
   return (
-    <form>
+    <form id={form.id} onSubmit={form.onSubmit} action={action}>
       <Card className={"mt-5 border-none shadow-none "}>
         <CardHeader>
           <CardTitle>Create New Spare Part</CardTitle>
@@ -45,6 +80,9 @@ export default function AddNewSpare() {
               <div className={"flex flex-col gap-3 w-full"}>
                 <Label>Name</Label>
                 <Input
+                  key={fields.name.key}
+                  name={fields.name.name}
+                  defaultValue={fields.name.initialValue}
                   type={"text"}
                   className={"w-full"}
                   placeholder={"Enter the Name "}
@@ -56,6 +94,9 @@ export default function AddNewSpare() {
               <div className={"flex flex-col gap-3 w-full"}>
                 <Label>Category</Label>
                 <Input
+                  key={fields.category.key}
+                  name={fields.category.name}
+                  defaultValue={fields.category.initialValue}
                   type={"text"}
                   className={"w-full"}
                   placeholder={"Enter the Category"}
@@ -65,7 +106,11 @@ export default function AddNewSpare() {
               </div>
               <div className={"flex flex-col gap-3 w-full"}>
                 <Label>Status</Label>
-                <Select>
+                <Select
+                  key={fields.status.key}
+                  name={fields.status.name}
+                  defaultValue={fields.status.initialValue}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder={"Select Status"} />
                   </SelectTrigger>
@@ -82,38 +127,73 @@ export default function AddNewSpare() {
 
             <div className={"flex flex-col gap-3"}>
               <Label>Description</Label>
-              <Textarea placeholder={"Enter the description "} />
+              <Textarea
+                key={fields.description.key}
+                name={fields.description.name}
+                defaultValue={fields.description.initialValue}
+                placeholder={"Enter the description "}
+              />
 
-              <p className={"text-sm text-red-500"}></p>
-            </div>
-
-            <div className={"flex flex-col gap-3"}>
-              <Label>Featured</Label>
-              <Switch />
               <p className={"text-sm text-red-500"}></p>
             </div>
 
             <div className={"flex flex-col gap-3"}>
               <Label>Images</Label>
-
-              <UploadDropzone
-                endpoint={"imageUploader"}
-                onUploadError={() => {
-                  toast({
-                    variant: "destructive",
-                    title: ` Ops... Something went wrong`,
-                    description:
-                      "There was an issue uploading some of your pictures.",
-                  });
-                }}
-                onClientUploadComplete={(res) => {
-                  toast({
-                    title: `✓   Uploaded successfully`,
-                    description: "Your images have been uploaded successfully",
-                  });
-                }}
+              <input
+                type={"hidden"}
+                value={images}
+                key={fields.images.key}
+                name={fields.images.name}
+                defaultValue={fields.images.initialValue as any}
               />
-              <p className={"text-sm text-red-500"}></p>
+
+              {images.length > 0 ? (
+                <div className={"flex gap-5 mt-3"}>
+                  {images.map((url, index) => (
+                    <div className={"relative w-[200px] h-[200px]"} key={index}>
+                      <Image
+                        src={url}
+                        alt={"images"}
+                        width={200}
+                        height={200}
+                        className={
+                          "w-full h-full object-cover rounded-lg border"
+                        }
+                      />
+                      <button
+                        className={
+                          "absolute -top-3 -right-3 bg-red-500 p-2 rounded-full text-white"
+                        }
+                        type={"button"}
+                        onClick={() => handleDelete(index)}
+                      >
+                        <XIcon />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <UploadDropzone
+                  endpoint={"spareUploader"}
+                  onUploadError={() => {
+                    toast({
+                      variant: "destructive",
+                      title: ` Ops... Something went wrong`,
+                      description:
+                        "There was an issue uploading some of your pictures.",
+                    });
+                  }}
+                  onClientUploadComplete={(res) => {
+                    toast({
+                      title: `✓   Uploaded successfully`,
+                      description:
+                        "Your images have been uploaded successfully",
+                    });
+                    setImages(res.map((r) => r.ufsUrl));
+                  }}
+                />
+              )}
+              <p className={"text-sm text-red-500"}>{fields.images.errors}</p>
             </div>
           </div>
         </CardContent>

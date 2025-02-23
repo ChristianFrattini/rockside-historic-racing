@@ -1,3 +1,4 @@
+import { deleteSpare } from "@/app/actions/actions";
 import SubmitButton from "@/app/components/SubmitButton";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,14 +25,14 @@ export default async function Delete({ params }: { params: { id: string } }) {
         </CardHeader>
         <CardFooter className={"w-full flex justify-between"}>
           <Button variant={"secondary"} asChild>
-            <Link href={`/admin/vehicles/`}>
+            <Link href={`/admin/spares/`}>
               <ChevronLeft className={"h-4 w-4 mr-2"} /> Return to spare parts
               list
             </Link>
           </Button>
 
-          <form>
-            <input type={"hidden"} name={"vehicleId"} value={id} />
+          <form action={deleteSpare}>
+            <input type={"hidden"} name={"spareId"} value={id} />
             <SubmitButton
               loadingText={"DELETING"}
               text={"DELETE"}

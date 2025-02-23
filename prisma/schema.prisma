@@ -36,7 +36,28 @@ model Banner {
   createdAt DateTime @default(now()) 
 }
 
+model Spare {
+  id String @id @default(uuid())
+
+  name String
+  category String
+  description String
+  status SpareStatus
+  images String[]
+  isFeatured Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+
 enum VehicleStatus{
+  draft
+  published
+  archived
+}
+
+
+enum SpareStatus{
   draft
   published
   archived
