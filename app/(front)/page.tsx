@@ -4,7 +4,6 @@ import NavBar from "../components/front-components/NavBar";
 export default function IndexPage() {
   return (
     <div>
-      <NavBar />
       <div className="min-h-screen bg-[#C5C9C7] text-[#A1A399] flex flex-col items-center justify-center p-6">
         <header className="text-4xl font-bold mb-6">
           ROCKSIDE HISTORIC RACING

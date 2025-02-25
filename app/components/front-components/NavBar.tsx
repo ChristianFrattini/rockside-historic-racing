@@ -88,7 +88,7 @@ export default function NavBar() {
               asChild
               key={link.href}
               className={` min-w-[100px] px-4 leading-10  mx-3 tracking-wide text-gray-300 font-medium ${
-                isScrolled ? "text-base" : "text-lg"
+                isScrolled ? "text-sm" : "text-base"
               }  transition-all duration-200 hover:bg-customGrayBackground hover:text-white`}
             >
               <Link href={link.href} className={"group relative"}>

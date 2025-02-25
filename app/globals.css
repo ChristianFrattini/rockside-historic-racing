@@ -68,8 +68,6 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -77,4 +75,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.front-layout {
+  font-family: Michroma, Arial, Helvetica, sans-serif;
+}
+
+.front-layout {
+  font-family: var(--font-michroma);
+  margin: 0;
+  padding: 0;
 }

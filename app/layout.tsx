@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Michroma } from "next/font/google";
 import "./globals.css";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const michroma = Michroma({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-michroma",
+});
+
 export const metadata: Metadata = {
   title: "Rockside Historic Racing",
   description: "The Online Showroom for Historic Racers",
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${michroma.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         {children}
