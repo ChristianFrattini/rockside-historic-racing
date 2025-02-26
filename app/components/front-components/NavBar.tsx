@@ -58,7 +58,7 @@ export default function NavBar() {
       {/*TO ADD CLASSNAME   className={"fixed top-0 w-full"} */}
       <div
         className={`flex md:justify-between items-center justify-center bg-customGrayBackground  ${
-          isScrolled ? " h-[4.8rem]" : " h-[6.5rem]"
+          isScrolled ? " h-[5rem]" : " h-[6rem]"
         }   px-7 transition-all ease-in-out duration-500`}
       >
         <div className={" "}>

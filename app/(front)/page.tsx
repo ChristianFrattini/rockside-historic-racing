@@ -1,9 +1,14 @@
 import React from "react";
 import NavBar from "../components/front-components/NavBar";
+import Hero from "../components/front-components/Hero";
 
 export default function IndexPage() {
   return (
     <div>
+      <div className=" mt-24 ">
+        <Hero />
+      </div>
+
       <div className="min-h-screen bg-[#C5C9C7] text-[#A1A399] flex flex-col items-center justify-center p-6">
         <header className="text-4xl font-bold mb-6">
           ROCKSIDE HISTORIC RACING
