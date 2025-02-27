@@ -31,12 +31,12 @@ const links = [
     href: "/spares",
   },
   {
-    name: "About Us",
-    href: "/about",
+    name: "Services",
+    href: "/services",
   },
   {
-    name: "Contact Us",
-    href: "/contact",
+    name: "About Us",
+    href: "/about",
   },
 ];
 
@@ -59,7 +59,7 @@ export default function NavBar() {
       <div
         className={`flex md:justify-between items-center justify-center bg-customGrayBackground  ${
           isScrolled ? " h-[5rem]" : " h-[6rem]"
-        }   px-7 transition-all ease-in-out duration-500`}
+        }   px-7 transition-all ease-in-out duration-500 backdrop-blur-xl opacity-90`}
       >
         <div className={" "}>
           <Link href={"/"}>
@@ -70,7 +70,7 @@ export default function NavBar() {
               height={isScrolled ? 80 : 120}
               width={isScrolled ? 210 : 270}
               className={
-                "object-cover transition-all duration-500 ease-in-out  "
+                "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 "
               }
             />
           </Link>

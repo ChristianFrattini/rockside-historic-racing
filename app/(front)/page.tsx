@@ -5,7 +5,7 @@ import Hero from "../components/front-components/Hero";
 export default function IndexPage() {
   return (
     <div>
-      <div className=" mt-24 ">
+      <div>
         <Hero />
       </div>
 

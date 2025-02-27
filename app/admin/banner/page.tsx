@@ -31,6 +31,15 @@ async function getData() {
 
 export default async function Banner() {
   const data = await getData();
+
+  const formatDate = (isoString: Date): string => {
+    const date = new Date(isoString);
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
   return (
     <>
       <div className={"flex items-center justify-end"}>
@@ -56,6 +65,7 @@ export default async function Banner() {
               <TableRow>
                 <TableHead className="w-1/4">Image</TableHead>
                 <TableHead className="w-1/2">Title</TableHead>
+                <TableHead className="w-1/2">Date Created</TableHead>
                 <TableHead className="w-1/4 text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -73,6 +83,9 @@ export default async function Banner() {
                     />
                   </TableCell>
                   <TableCell className="font-medium">{item.title}</TableCell>
+                  <TableCell className="font-medium">
+                    {formatDate(item.createdAt)}
+                  </TableCell>
                   <TableCell className="text-end">
                     <Button variant="ghost" size="icon">
                       <Link href={`/admin/banner/${item.id}/delete`}>
