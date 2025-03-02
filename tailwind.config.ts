@@ -15,6 +15,8 @@ const config: Config = {
         customGrayText: "#9C9F96",
         customBlack: "#050709",
         customRed: "#E0101E",
+        purpleRed: "#6F3842",
+        greyish: "#C5C9C7",
 
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -74,6 +76,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
 export default withUt(config);

@@ -1,12 +1,16 @@
 import React from "react";
 import NavBar from "../components/front-components/NavBar";
 import Hero from "../components/front-components/Hero";
+import HeroLinkCards from "../components/front-components/HeroLinkCards";
 
 export default function IndexPage() {
   return (
     <div>
-      <div>
+      <div className={"bg-greyish"}>
         <Hero />
+        <div className={"mx-5"}>
+          <HeroLinkCards />
+        </div>
       </div>
 
       <div className="min-h-screen bg-[#C5C9C7] text-[#A1A399] flex flex-col items-center justify-center p-6">
@@ -16,7 +20,7 @@ export default function IndexPage() {
 
         <p className="text-lg text-center max-w-2xl">
           Welcome to Rockside Historic Racing. Experience the thrill of classic
-          motorsport with a modern touch.
+          motorsport.
         </p>
 
         <button className="mt-6 bg-[#D11E1E] text-white px-6 py-2 rounded-2xl shadow-lg hover:bg-[#b71a1a] transition">
