@@ -22,6 +22,7 @@ model Vehicle {
   year Int
   description String
   status VehicleStatus
+  price Int
   images String[]
   isFeatured Boolean @default(false)
 
@@ -43,6 +44,7 @@ model Spare {
   category String
   description String
   status SpareStatus
+  price Int
   images String[]
   isFeatured Boolean @default(false)
 

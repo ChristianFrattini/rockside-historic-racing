@@ -133,6 +133,19 @@ export default function AddNewVehicle() {
               </p>
             </div>
 
+            <div className={"flex flex-col gap-3 w-full"}>
+              <Label>Price</Label>
+              <Input
+                key={fields.price.key}
+                name={fields.price.name}
+                defaultValue={fields.price.initialValue}
+                type={"number"}
+                className={"w-full"}
+                placeholder={"40000"}
+              />
+              <p className={"text-sm text-red-500"}>{fields.price.errors}</p>
+            </div>
+
             <div className={"flex flex-col gap-3"}>
               <Label>Featured</Label>
               <Switch

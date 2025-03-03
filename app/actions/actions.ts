@@ -37,6 +37,7 @@ export async function addVehicle(previousState: unknown, formData: FormData) {
       description: submission.value.description,
       isFeatured: submission.value.isFeatured === true ? true : false,
       status: submission.value.status,
+      price: submission.value.price,
       images: flattenUrls,
     },
   });
@@ -78,6 +79,7 @@ export async function editVehicle(prevState: unknown, formData: FormData) {
       year: submission.value.year,
       description: submission.value.description,
       status: submission.value.status,
+      price: submission.value.price,
       images: flattenUrls,
       isFeatured: submission.value.isFeatured === true ? true : false,
     },
@@ -224,6 +226,7 @@ export async function addSpare(previousState: unknown, formData: FormData) {
       category: submission.value.category,
       description: submission.value.description,
       isFeatured: submission.value.isFeatured === true ? true : false,
+      price: submission.value.price,
       status: submission.value.status,
       images: flattenUrls,
     },
@@ -308,6 +311,7 @@ export async function editSpare(prevState: unknown, formData: FormData) {
       description: submission.value.description,
       isFeatured: submission.value.isFeatured === true ? true : false,
       status: submission.value.status,
+      price: submission.value.price,
       images: flattenUrls,
     },
   });

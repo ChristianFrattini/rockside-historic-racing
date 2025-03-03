@@ -43,6 +43,7 @@ interface iAppProps {
     brand: string;
     year: number;
     description: string;
+    price: number;
     status: $Enums.VehicleStatus;
     images: string[];
     isFeatured: boolean;
@@ -160,6 +161,18 @@ export default function EditVehicleForm({ data }: iAppProps) {
               <p className={"text-red-500 text-muted-foreground"}>
                 {fields.description.errors}
               </p>
+            </div>
+            <div className={"flex flex-col gap-3 w-full"}>
+              <Label>Price</Label>
+              <Input
+                key={fields.price.key}
+                name={fields.price.name}
+                defaultValue={data.price}
+                type={"number"}
+                className={"w-full"}
+                placeholder={"40000"}
+              />
+              <p className={"text-sm text-red-500"}>{fields.price.errors}</p>
             </div>
 
             <div className={"flex flex-col gap-3"}>

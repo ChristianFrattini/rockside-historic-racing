@@ -40,6 +40,7 @@ interface iAppProps {
     name: string;
     category: string;
     description: string;
+    price: number;
     status: $Enums.SpareStatus;
     images: string[];
     isFeatured: boolean;
@@ -149,6 +150,19 @@ export default function EditSpareForm({ data }: iAppProps) {
               />
 
               <p className={"text-sm text-red-500"}></p>
+            </div>
+
+            <div className={"flex flex-col gap-3 w-full"}>
+              <Label>Price</Label>
+              <Input
+                key={fields.price.key}
+                name={fields.price.name}
+                defaultValue={data.price}
+                type={"number"}
+                className={"w-full"}
+                placeholder={"500"}
+              />
+              <p className={"text-sm text-red-500"}>{fields.price.errors}</p>
             </div>
 
             <div className={"flex flex-col gap-3"}>
