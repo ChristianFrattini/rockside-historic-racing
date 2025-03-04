@@ -15,7 +15,7 @@ export default function HeroLinkCards() {
       whileInView={{ opacity: 1, y: 0 }} // Animate when in view
       viewport={{ once: true, amount: 0.35 }} // Trigger when 50% of the component is visible
       transition={{ duration: 0.7, ease: "easeInOut" }} // Smooth transition
-      className="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-4"
+      className="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-4 mx-5 "
     >
       {/* Enlarged "All Products" Card */}
       <motion.div

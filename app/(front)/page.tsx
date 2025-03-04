@@ -2,15 +2,15 @@ import React from "react";
 import NavBar from "../components/front-components/NavBar";
 import Hero from "../components/front-components/Hero";
 import HeroLinkCards from "../components/front-components/HeroLinkCards";
+import FeaturedVehicles from "../components/front-components/FeaturedVehicles";
 
 export default function IndexPage() {
   return (
     <div>
       <div className={"bg-greyish"}>
         <Hero />
-        <div className={"mx-5"}>
-          <HeroLinkCards />
-        </div>
+        <HeroLinkCards />
+        <FeaturedVehicles />
       </div>
 
       <div className="min-h-screen bg-[#C5C9C7] text-[#A1A399] flex flex-col items-center justify-center p-6">

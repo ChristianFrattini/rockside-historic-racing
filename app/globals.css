@@ -85,6 +85,7 @@
   font-family: var(--font-michroma);
   margin: 0;
   padding: 0;
+  @apply bg-greyish;
 }
 
 /* Hide scrollbar for Chrome, Safari and Edge */
