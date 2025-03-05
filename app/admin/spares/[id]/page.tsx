@@ -19,6 +19,7 @@ export default async function EditSpare({
 }: {
   params: { id: string };
 }) {
-  const data = await getData(params.id);
+  const { id } = await params;
+  const data = await getData(id);
   return <EditSpareForm data={data} />;
 }

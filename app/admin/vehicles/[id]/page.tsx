@@ -20,6 +20,7 @@ export default async function EditVehicle({
 }: {
   params: { id: string };
 }) {
-  const data = await getData(params.id);
+  const { id } = await params;
+  const data = await getData(id);
   return <EditVehicleForm data={data} />;
 }

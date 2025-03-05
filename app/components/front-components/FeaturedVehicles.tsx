@@ -25,7 +25,7 @@ export default async function FeaturedVehicles() {
   const data = await getData();
   return (
     <>
-      <div className={"mt-7 p-5"}>
+      <div className={"mt-7 lg:p-5 "}>
         <h2
           className={
             "text-2xl font-extrabold tracking-tight text-customBlack/80"

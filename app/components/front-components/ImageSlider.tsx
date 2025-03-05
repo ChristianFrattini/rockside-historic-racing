@@ -111,9 +111,8 @@ export default function ImageSlider({ images }: iAppProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
           onClick={toggleForeground} // Close modal when clicking outside
         >
-          {" "}
-          <Lens>
-            <div className="relative max-w-[90vw] max-h-[90vh]">
+          <div className="relative max-w-[90vw] max-h-[90vh]">
+            <Lens>
               <Image
                 src={images[mainImageIndex]}
                 alt="product_images"
@@ -121,30 +120,30 @@ export default function ImageSlider({ images }: iAppProps) {
                 height={1200}
                 className="object-contain w-full h-full rounded-lg"
               />{" "}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent event from bubbling up to the parent div
-                  toggleForeground();
-                }}
-                className="absolute top-2 right-2 p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 text-white"
+            </Lens>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent event from bubbling up to the parent div
+                toggleForeground();
+              }}
+              className="absolute top-2 right-2 p-2 z-20 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-          </Lens>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>

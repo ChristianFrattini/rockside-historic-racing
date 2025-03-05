@@ -1,3 +1,4 @@
+import ContactForm from "@/app/components/front-components/ContactForm";
 import FeaturedVehicles from "@/app/components/front-components/FeaturedVehicles";
 import ImageSlider from "@/app/components/front-components/ImageSlider";
 import prisma from "@/app/lib/db";
@@ -31,26 +32,51 @@ export default async function VehicleRoute({
 }: {
   params: { id: string };
 }) {
-  const data = await getData(params.id);
+  //console.log(params);
+  const { id } = await params;
+  const data = await getData(id);
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start lg:gap-x-24 py-12 pt-32 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="w-full">
-          <ImageSlider images={data.images} />
+      <div className="flex flex-col gap-8 py-12 pt-[6.7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.6fr] gap-8 items-start">
+          {/* Image Slider */}
+          <div className="w-full overflow-hidden ">
+            <ImageSlider images={data.images} />
+          </div>
+
+          {/* Name, Brand, and Price */}
+          <div className="space-y-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+              {data.name}
+            </h1>
+            <h2 className="text-lg md:text-xl font-medium text-gray-600">
+              {data.brand}
+            </h2>
+            <p className="text-2xl md:text-3xl font-bold text-gray-900">
+              £{data.price}
+            </p>
+            <div className={"hidden md:hidden lg:block"}>
+              <ContactForm />
+            </div>
+          </div>
         </div>
-        <div className="space-y-6">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
-            {data.name}
-          </h1>
-          <h2 className="text-xl font-semibold text-gray-700">{data.brand}</h2>
-          <p className="text-3xl font-bold text-gray-900">£{data.price}</p>
-          <p className="text-lg text-gray-700 leading-relaxed tracking-wide">
+
+        {/* Description Section */}
+        <div className="w-full space-y-3">
+          <h2 className="text-xl md:text-3xl font-bold text-gray-900 ">
+            Description
+          </h2>
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed">
             {data.description}
           </p>
         </div>
+        <div className={"lg:hidden"}>
+          {" "}
+          <ContactForm />
+        </div>
       </div>
 
-      <div className="mt-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mt-10 mx-auto max-w-7xl px-4 sm:px-1 lg:px-3">
         <FeaturedVehicles />
       </div>
     </>
