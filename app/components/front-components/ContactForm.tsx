@@ -9,21 +9,16 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function ContactForm() {
   return (
-    <motion.section
-      className={
-        " mt-12  w-[min(100%, 38rem)] mx-3 text-center bg-customBlack/75 shadow-xl  rounded-xl"
-      }
+    <motion.div
+      className={"   text-center bg-customBlack/75 shadow-xl  rounded-xl"}
       initial={{
         opacity: 0,
       }}
-      whileInView={{
+      animate={{
         opacity: 1,
       }}
       transition={{
         duration: 1,
-      }}
-      viewport={{
-        once: true,
       }}
     >
       <p className={"text-gray-300  dark:text-white/80 pt-2 px-2 font-medium "}>
@@ -38,14 +33,14 @@ export default function ContactForm() {
         className={"mt-10 flex flex-col dark:text-black px-3 pb-2 gap-5"}
         //onSubmit={handleSubmit} // Use handleSubmit function for form submission
       >
-        <div className={"flex space-x-3"}>
-          <div className={"flex flex-col gap-3"}>
+        <div className={"flex space-x-3 justify-between"}>
+          <div className={"flex flex-col gap-3 w-full"}>
             <Label className={"flex items-start text-customGrayText"}>
               First Name
             </Label>
             <Input placeholder={"First Name"} />
           </div>
-          <div className={"flex flex-col gap-3"}>
+          <div className={"flex flex-col gap-3 w-full"}>
             <Label className={"flex items-start text-customGrayText"}>
               Last Name
             </Label>
@@ -78,6 +73,6 @@ export default function ContactForm() {
 
         <SubmitButton text={"Send Message"} loadingText={"Sending"} />
       </form>
-    </motion.section>
+    </motion.div>
   );
 }

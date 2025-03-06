@@ -55,8 +55,10 @@ export default async function VehicleRoute({
             <p className="text-2xl md:text-3xl font-bold text-gray-900">
               £{data.price}
             </p>
-            <div className={"hidden md:hidden lg:block"}>
-              <ContactForm />
+            <div className={"hidden md:hidden lg:block "}>
+              <div className={"mt-12"}>
+                <ContactForm />
+              </div>
             </div>
           </div>
         </div>
