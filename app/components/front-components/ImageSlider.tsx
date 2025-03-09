@@ -88,7 +88,9 @@ export default function ImageSlider({ images }: iAppProps) {
             onClick={() => handleImageClick(index)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={cn("relative overflow-hidden cursor-pointer rounded-md")}
+            className={cn(
+              "relative overflow-hidden cursor-pointer rounded-md p-1",
+            )}
           >
             <Image
               src={image}
@@ -96,7 +98,7 @@ export default function ImageSlider({ images }: iAppProps) {
               width={100}
               height={100}
               className={cn(
-                "object-cover w-full h-[60px] sm:h-[80px] md:h-[100px] rounded-md",
+                "object-cover w-full h-[60px] sm:h-[80px] md:h-[100px] rounded-md ",
                 index === mainImageIndex
                   ? "border-2 border-primary"
                   : "border-2 border-customGrayText",

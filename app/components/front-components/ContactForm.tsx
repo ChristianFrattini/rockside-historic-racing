@@ -38,13 +38,13 @@ export default function ContactForm() {
             <Label className={"flex items-start text-customGrayText"}>
               First Name
             </Label>
-            <Input placeholder={"First Name"} />
+            <Input placeholder={"First Name"} required />
           </div>
           <div className={"flex flex-col gap-3 w-full"}>
             <Label className={"flex items-start text-customGrayText"}>
               Last Name
             </Label>
-            <Input placeholder={"Last Name"} />
+            <Input placeholder={"Last Name"} required />
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export default function ContactForm() {
           <Label className={"flex items-start text-customGrayText"}>
             Email
           </Label>
-          <Input placeholder={"Email"} type={"email"} />
+          <Input placeholder={"Email"} type={"email"} required />
         </div>
 
         <div className={"flex flex-col gap-3"}>
@@ -61,7 +61,8 @@ export default function ContactForm() {
           </Label>
           <Textarea
             placeholder={"Write your message here..."}
-            className={"h-[9.5rem]"}
+            className={"max-h-[9.5rem] h-[9.5rem]"}
+            required
           />
         </div>
         {/* Add ReCAPTCHA Component */}

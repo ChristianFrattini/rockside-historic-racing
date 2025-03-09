@@ -38,7 +38,7 @@ export default async function VehicleRoute({
   return (
     <>
       <div className="flex flex-col gap-8 py-12 pt-[6.7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.6fr] gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.6fr] gap-8 items-start">
           {/* Image Slider */}
           <div className="w-full overflow-hidden ">
             <ImageSlider images={data.images} />
@@ -47,7 +47,7 @@ export default async function VehicleRoute({
           {/* Name, Brand, and Price */}
           <div className="space-y-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-              {data.name}
+              {data.name} ({data.year})
             </h1>
             <h2 className="text-lg md:text-xl font-medium text-gray-600">
               {data.brand}
@@ -56,7 +56,7 @@ export default async function VehicleRoute({
               £{data.price}
             </p>
             <div className={"hidden md:hidden lg:block "}>
-              <div className={"mt-12"}>
+              <div className={"mt-10"}>
                 <ContactForm />
               </div>
             </div>
@@ -73,12 +73,11 @@ export default async function VehicleRoute({
           </p>
         </div>
         <div className={"lg:hidden"}>
-          {" "}
           <ContactForm />
         </div>
       </div>
 
-      <div className="mt-10 mx-auto max-w-7xl px-4 sm:px-1 lg:px-3">
+      <div className="mt-7 mx-auto max-w-7xl ">
         <FeaturedVehicles />
       </div>
     </>
