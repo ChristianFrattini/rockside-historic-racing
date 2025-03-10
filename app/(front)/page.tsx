@@ -5,6 +5,7 @@ import HeroLinkCards from "../components/front-components/HeroLinkCards";
 import FeaturedVehicles from "../components/front-components/FeaturedVehicles";
 import Map from "../components/front-components/Map";
 import ContactForm from "../components/front-components/ContactForm";
+import LeafletMapComponent from "../components/front-components/Map";
 
 export default function IndexPage() {
   return (
@@ -13,10 +14,13 @@ export default function IndexPage() {
         <Hero />
         <HeroLinkCards />
         <FeaturedVehicles />
-        {/* <div className={"flex lg:flex-row lg:justify-between flex-col"}>
-          <Map longitude={-1.6178} latitude={54.9783} />
-          <ContactForm />
-        </div>*/}
+        <div
+          className={
+            "flex lg:flex-row lg:justify-between gap-5 flex-col mx-5 mt-7"
+          }
+        >
+          <LeafletMapComponent />
+        </div>
       </div>
 
       <div className="min-h-screen bg-[#C5C9C7] text-[#A1A399] flex flex-col items-center justify-center p-6">
