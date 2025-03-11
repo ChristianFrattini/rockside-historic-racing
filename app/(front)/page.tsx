@@ -6,6 +6,7 @@ import FeaturedVehicles from "../components/front-components/FeaturedVehicles";
 import Map from "../components/front-components/Map";
 import ContactForm from "../components/front-components/ContactForm";
 import LeafletMapComponent from "../components/front-components/Map";
+import MapSection from "../components/front-components/MapSection";
 
 export default function IndexPage() {
   return (
@@ -19,7 +20,7 @@ export default function IndexPage() {
             "flex lg:flex-row lg:justify-between gap-5 flex-col mx-5 mt-7"
           }
         >
-          <LeafletMapComponent />
+          <MapSection />
         </div>
       </div>
 

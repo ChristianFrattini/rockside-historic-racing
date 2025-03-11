@@ -13,8 +13,12 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import Style from "ol/style/Style";
 import Icon from "ol/style/Icon";
+import {
+  defaults as defaultInteractions,
+  MouseWheelZoom,
+} from "ol/interaction";
 
-const MyMap = () => {
+const MapComponent = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const latitude = 54.96;
   const longitude = -1.6;
@@ -36,6 +40,9 @@ const MyMap = () => {
       view: new View({
         center: coordinates, // Center the map at the location
         zoom: 11,
+      }),
+      interactions: defaultInteractions({
+        mouseWheelZoom: false,
       }),
     });
 
@@ -67,7 +74,7 @@ const MyMap = () => {
     return () => map.setTarget(undefined); // Cleanup when unmounting
   }, []);
 
-  return <div ref={mapRef} style={{ height: "500px", width: "100%" }} />;
+  return <div ref={mapRef} style={{ height: "650px", width: "100%" }} />;
 };
 
-export default MyMap;
+export default MapComponent;
