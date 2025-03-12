@@ -21,13 +21,13 @@ export default function OpeningTimes() {
         </div>
 
         <Separator className={"border-[3px] border-customRed rounded-xl"} />
-        <div className="px-2 py-1">
+        <div className="px-2 py-1 bg-customGrayBackground/10 rounded-md">
           <table className="w-full">
             <tbody>
               {openingTimes.map((time, index) => (
                 <tr
                   key={time.day}
-                  className="hover:bg-gray-200 duration-100 rounded-md"
+                  className="hover:bg-gray-300 duration-100 rounded-md"
                 >
                   <td className="px-2 py-1.5 text-sm sm:text-base text-gray-700 font-medium">
                     {time.day}
