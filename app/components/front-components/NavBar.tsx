@@ -27,16 +27,16 @@ const links = [
     href: "/showroom",
   },
   {
-    name: "Spare Parts",
-    href: "/spares",
-  },
-  {
     name: "Services",
     href: "/services",
   },
   {
+    name: "Contact Us",
+    href: "/contact-us",
+  },
+  {
     name: "About Us",
-    href: "/about",
+    href: "/about-us",
   },
 ];
 

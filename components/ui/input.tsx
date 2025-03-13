@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           background: useMotionTemplate`
         radial-gradient(
           ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-          var(--blue-500),
+          var(--customRed),
           transparent 80%
         )
       `,
@@ -46,14 +46,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
            dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
            group-hover/input:shadow-none transition duration-400
            `,
-            className
+            className,
           )}
           ref={ref}
           {...props}
         />
       </motion.div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

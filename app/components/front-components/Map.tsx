@@ -23,7 +23,7 @@ const MapComponent = () => {
   const latitude = 54.96;
   const longitude = -1.6;
 
-  const iconUrl = "/map-pin.svg"; // Local file in /public
+  const iconUrl = "/icons/map-pin.svg"; // Local file in /public
 
   useEffect(() => {
     if (!mapRef.current) return;

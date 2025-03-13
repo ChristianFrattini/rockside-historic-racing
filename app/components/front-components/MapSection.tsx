@@ -26,7 +26,7 @@ export default function MapSection() {
             className={"tracking-wide lg:text-base sm:text-xs"}
             asChild
           >
-            <Link href="/contact-us"> Get In Touch</Link>
+            <Link href="/contact-us"> Get In Touch Now!</Link>
           </Button>
         </div>
       </div>

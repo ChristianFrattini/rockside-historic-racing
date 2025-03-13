@@ -72,17 +72,18 @@ export default function HeroLinkCards() {
           transition={{ type: "tween", duration: 0.175 }} // Springy effect
           className="group rounded-lg overflow-hidden relative flex-1 bg-purpleRed"
         >
-          <MessageSquareMore
-            className={
-              "h-full w-full flex items-center justify-center scale-x-[-1]"
-            }
-          />
-          <div className="absolute inset-0 bg-black/40" /> {/* Dark overlay */}
-          <div className="absolute inset-0 p-4 flex items-end  ">
-            <Link href="">
+          <Link href="/contact-us">
+            <MessageSquareMore
+              className={
+                "h-full w-full flex items-center justify-center scale-x-[-1]"
+              }
+            />
+            <div className="absolute inset-0 bg-black/40" />{" "}
+            {/* Dark overlay */}
+            <div className="absolute inset-0 p-4 flex items-end  ">
               <h3 className="text-white font-semibold">Contact us</h3>
-            </Link>
-          </div>
+            </div>{" "}
+          </Link>
         </motion.div>
       </motion.div>
     </motion.div>
