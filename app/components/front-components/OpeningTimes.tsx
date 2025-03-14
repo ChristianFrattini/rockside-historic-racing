@@ -15,18 +15,14 @@ export default function OpeningTimes() {
   return (
     <>
       <div className="flex flex-col gap-3">
-        {/* Header with Clock Icon */}
         <div className="flex items-center gap-3">
           <Clock className="h-8 w-8 sm:h-12 sm:w-12" />{" "}
-          {/* Adjust icon size for mobile */}
           <h2 className="text-xl sm:text-2xl font-bold">Opening Times</h2>{" "}
-          {/* Adjust font size for mobile */}
         </div>
 
         {/* Separator */}
         <Separator className="border-[2px] border-customRed rounded-xl" />
 
-        {/* Table Container */}
         <div className="px-2 py-1 bg-customGrayBackground/10 rounded-md">
           <table className="w-full">
             <tbody>
