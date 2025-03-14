@@ -6,11 +6,12 @@ import { motion } from "framer-motion";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 export default function ContactForm() {
   return (
     <motion.div
-      className={"   text-center bg-customBlack/75 shadow-xl  rounded-xl"}
+      className={"text-center bg-greyish  rounded-xl"}
       initial={{
         opacity: 0,
       }}
@@ -18,19 +19,11 @@ export default function ContactForm() {
         opacity: 1,
       }}
       transition={{
-        duration: 1,
+        duration: 0.5,
       }}
     >
-      <p className={"text-gray-300  dark:text-white/80 pt-2 px-2 font-medium "}>
-        Please contact us at{" "}
-        <a className="underline" href="tel:07722 78898">
-          07722 78898
-        </a>{" "}
-        or through the form below.
-      </p>
-
       <form
-        className={"mt-10 flex flex-col dark:text-black px-3 pb-2 gap-5"}
+        className={"mt-5 flex flex-col dark:text-black px-3 pb-2 gap-5"}
         //onSubmit={handleSubmit} // Use handleSubmit function for form submission
       >
         <div className={"flex space-x-3 justify-between"}>
@@ -57,6 +50,13 @@ export default function ContactForm() {
 
         <div className={"flex flex-col gap-3"}>
           <Label className={"flex items-start text-customGrayText"}>
+            Telephone
+          </Label>
+          <Input placeholder={"Phone Number"} type={"tel"} required />
+        </div>
+
+        <div className={"flex flex-col gap-3"}>
+          <Label className={"flex items-start text-customGrayText"}>
             Your Message
           </Label>
           <Textarea
@@ -72,8 +72,18 @@ export default function ContactForm() {
           className="my-4" // Optional: Add some margin for better spacing
         />*/}
 
-        <SubmitButton text={"Send Message"} loadingText={"Sending"} />
+        {/*<SubmitButton text={"Send Message"} loadingText={"Sending"} />*/}
+        <Button variant={"default"}>Send Message</Button>
       </form>
+
+      <p
+        className={"text-gray-600 mt-3  dark:text-white/80  px-2 font-medium "}
+      >
+        Please contact us through the form above or alternatively by phoning{" "}
+        <a className="underline" href="tel:07722 78898">
+          07722 78898
+        </a>
+      </p>
     </motion.div>
   );
 }

@@ -8,19 +8,23 @@ import React from "react";
 
 export default function ContactUsPage() {
   return (
-    <div className="py-12 pt-[6.7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="py-12 pt-[7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 className={"md:mb-10 mb-5 font-light md:text-4xl text-3xl"}>
+        Contact Us
+      </h2>
+
       <div className="flex flex-col lg:flex-row lg:space-x-10 lg:justify-between space-y-8 lg:space-y-0">
-        <div className="flex flex-col gap-5 w-full lg:w-auto ">
+        <div className="w-full lg:w-[60%]">
+          <ContactForm />
+        </div>
+
+        <div className="flex flex-col gap-5 w-full lg:w-[35%]">
           <Location />
           <OpeningTimes />
         </div>
-
-        <div className="w-full lg:w-auto">
-          <ContactForm />
-        </div>
       </div>
 
-      <div className={" mt-10 h-[40rem] w-full cursor-pointer"}>
+      <div className={"mt-10 h-[40rem] w-full cursor-pointer"}>
         <MapComponent />
         <Button
           variant={"secondary"}

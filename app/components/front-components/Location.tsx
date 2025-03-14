@@ -7,11 +7,11 @@ export default function Location() {
     <>
       <div className={"flex gap-3 flex-col "}>
         <div className={"flex gap-3 items-center"}>
-          <MapPinned className={"h-12 w-12"} />
-          <h2 className={"text-2xl font-bold"}>Find us here</h2>
+          <MapPinned className="h-8 w-8 sm:h-12 sm:w-12" />
+          <h2 className="text-xl sm:text-2xl font-bold">Find us here</h2>
         </div>
 
-        <Separator className={"border-[3px] border-customRed rounded-xl"} />
+        <Separator className={"border-[2px] border-customRed rounded-xl"} />
         <div
           className={
             "space-y-1 bg-customGrayBackground/10 rounded-md px-2 py-2"

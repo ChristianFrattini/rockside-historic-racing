@@ -41,7 +41,7 @@ export default function ImageSlider({ images }: iAppProps) {
   return (
     <div className="grid gap-4 md:gap-3 items-start">
       {/* Big Image Container */}{" "}
-      <div className="relative overflow-hidden rounded-lg w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+      <div className="relative overflow-hidden rounded-lg w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[670px]">
         {/* Zoomable Image Container */}
         <motion.div
           key={mainImageIndex}

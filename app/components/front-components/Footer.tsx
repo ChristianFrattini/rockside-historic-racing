@@ -95,7 +95,7 @@ export default function Footer() {
         <div className="w-full lg:w-[40rem]">
           <InfiniteMovingCards
             images={images}
-            direction="right"
+            direction="left"
             speed="fast"
             pauseOnHover={false}
           />

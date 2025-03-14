@@ -14,13 +14,19 @@ export default function OpeningTimes() {
   ];
   return (
     <>
-      <div className={"flex gap-3 flex-col "}>
-        <div className={"flex items-center gap-3"}>
-          <Clock className={"h-12 w-12"} />
-          <h2 className={"text-2xl font-bold"}>Opening Times</h2>
+      <div className="flex flex-col gap-3">
+        {/* Header with Clock Icon */}
+        <div className="flex items-center gap-3">
+          <Clock className="h-8 w-8 sm:h-12 sm:w-12" />{" "}
+          {/* Adjust icon size for mobile */}
+          <h2 className="text-xl sm:text-2xl font-bold">Opening Times</h2>{" "}
+          {/* Adjust font size for mobile */}
         </div>
 
-        <Separator className={"border-[3px] border-customRed rounded-xl"} />
+        {/* Separator */}
+        <Separator className="border-[2px] border-customRed rounded-xl" />
+
+        {/* Table Container */}
         <div className="px-2 py-1 bg-customGrayBackground/10 rounded-md">
           <table className="w-full">
             <tbody>
@@ -29,10 +35,12 @@ export default function OpeningTimes() {
                   key={time.day}
                   className="hover:bg-gray-300 duration-100 rounded-md"
                 >
-                  <td className="px-2 py-1.5 text-sm sm:text-base text-gray-700 font-medium">
+                  {/* Day Column */}
+                  <td className="px-2 py-1.5 text-xs sm:text-base text-gray-700 font-medium whitespace-nowrap">
                     {time.day}
                   </td>
-                  <td className="px-2 py-1 text-sm sm:text-base text-gray-600">
+                  {/* Hours Column */}
+                  <td className="px-2 py-1 text-xs sm:text-base text-gray-600 whitespace-nowrap">
                     {time.hours}
                   </td>
                 </tr>
