@@ -16,7 +16,7 @@ interface iAppProps {
 
 export default function VehicleCard({ item }: iAppProps) {
   return (
-    <Link href={`/vehicles/${item.id}`}>
+    <Link href={`/showroom/${item.id}`}>
       <motion.div
         className="relative lg:w-[24rem] lg:h-[16rem] md:w-[22rem] md:h-[14rem] sm:w-[16rem] sm:h-[8rem] rounded-lg overflow-hidden shadow-lg cursor-pointer"
         //whileHover={{ scale: 1.05 }}

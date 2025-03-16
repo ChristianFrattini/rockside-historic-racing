@@ -6,6 +6,7 @@ async function getData() {
   const data = await prisma.vehicle.findMany({
     where: {
       status: "published",
+      isFeatured: true,
     },
     select: {
       id: true,
@@ -25,10 +26,10 @@ export default async function FeaturedVehicles() {
   const data = await getData();
   return (
     <>
-      <div className={"mt-7 lg:p-4 "}>
+      <div className={"mt-7 mb-4 "}>
         <h2
           className={
-            "text-2xl font-extrabold tracking-tight text-customBlack/80 mx-3 "
+            "text-2xl font-extrabold tracking-tight text-customBlack/80 mx-5 "
           }
         >
           Explore Our Featured Vehicles

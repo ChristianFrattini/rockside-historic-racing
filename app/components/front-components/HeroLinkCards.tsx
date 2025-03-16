@@ -17,7 +17,7 @@ export default function HeroLinkCards() {
       transition={{ duration: 0.7, ease: "easeInOut" }} // Smooth transition
       className="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-4 mx-5 "
     >
-      {/* Enlarged "All Products" Card */}
+      {/* Enlarged "Showroom" Card */}
       <motion.div
         whileHover={{ scale: 1.02 }} // Scale up slightly on hover
         transition={{ type: "tween", duration: 0.175 }} // Springy effect
@@ -31,7 +31,7 @@ export default function HeroLinkCards() {
         />
         <div className="absolute inset-0 bg-black/40" /> {/* Dark overlay */}
         <div className="absolute inset-0 p-4 flex items-end">
-          <Link href="">
+          <Link href="/showroom">
             <h3 className="text-white font-semibold text-xl">Showroom</h3>
             <p className="mt-1 text-sm text-white">Visit Now</p>
           </Link>
