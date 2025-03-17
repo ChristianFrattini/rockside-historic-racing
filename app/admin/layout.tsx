@@ -31,7 +31,7 @@ export default async function AdminLayout({
 }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  console.log(user);
+  //console.log(user);
 
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");

@@ -57,11 +57,11 @@ export default function NavBar() {
     <div className={" top-0 w-full fixed z-50"}>
       {/*TO ADD CLASSNAME   className={"fixed top-0 w-full"} */}
       <div
-        className={`flex md:justify-between items-center justify-center bg-customGrayBackground  ${
+        className={`flex lg:justify-between items-center justify-center bg-customGrayBackground  ${
           isScrolled ? " h-[5rem]" : " h-[5.7rem]"
-        }   px-7 transition-all ease-in-out duration-500 backdrop-blur-xl opacity-90`}
+        }   px-7  transition-all ease-in-out duration-500 backdrop-blur-xl opacity-90`}
       >
-        <div className={" "}>
+        <div className={""}>
           <Link href={"/"}>
             <Image
               alt={"logo"}
@@ -75,7 +75,7 @@ export default function NavBar() {
             />
           </Link>
         </div>
-        <div className={"hidden md:block  "}>
+        <div className={"hidden lg:block"}>
           {/* <p
             className={` flex leading-10 text-white ${
               isScrolled ? "text-xl font-extralight" : "text-2xl font-light"
@@ -88,7 +88,7 @@ export default function NavBar() {
               asChild
               key={link.href}
               className={` min-w-[100px] px-4 leading-10  mx-3 tracking-wide text-gray-300 font-medium ${
-                isScrolled ? "text-sm" : "text-base"
+                isScrolled ? "lg:text-sm text-xs" : "lg:text-base text-sm"
               }  transition-all duration-200 hover:bg-customGrayBackground hover:text-white`}
             >
               <Link href={link.href} className={"group relative"}>
@@ -99,7 +99,7 @@ export default function NavBar() {
           ))}
         </div>
 
-        <div className="md:hidden absolute right-[90%]">
+        <div className="lg:hidden absolute right-[90%]">
           <Sheet>
             <SheetTrigger>
               <MenuIcon className={"text-white"} />

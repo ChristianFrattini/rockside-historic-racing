@@ -1,4 +1,5 @@
 import FeaturedVehicles from "@/app/components/front-components/FeaturedVehicles";
+import Showroom from "@/app/components/front-components/Showroom";
 import VehicleCard from "@/app/components/front-components/VehicleCard";
 import prisma from "@/app/lib/db";
 import { Separator } from "@/components/ui/separator";
@@ -15,6 +16,7 @@ async function getData() {
       brand: true,
       year: true,
       description: true,
+      isFeatured: true,
       price: true,
       images: true,
       id: true,
@@ -29,8 +31,11 @@ async function getData() {
 
 export default async function ShowroomPage() {
   const data = await getData();
-  return (
-    <div className="py-12 pt-[7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  return <Showroom data={data} />;
+}
+
+{
+  /*<div className="py-12 pt-[7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <h2 className={"md:mb-10 mb-5 font-light md:text-4xl text-3xl"}>
         Showroom
       </h2>
@@ -49,17 +54,17 @@ export default async function ShowroomPage() {
           className="text-blue-600 hover:text-blue-800 underline"
         >
           contact us
-        </a>{" "}
+        </a>
         .
       </p>
       <Separator
         className={"w-full border md:mb-10 mb-5 border-customGrayBackground"}
       />
+
       <div className={"mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mx-5"}>
         {data.map((item) => (
           <VehicleCard key={item.id} item={item} />
         ))}
       </div>
-    </div>
-  );
+    </div>*/
 }
