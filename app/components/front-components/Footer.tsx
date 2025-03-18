@@ -38,7 +38,7 @@ export default function Footer() {
     },
     {
       name: "About Us",
-      href: "/about",
+      href: "/about-us",
     },
     {
       name: "Contact Us",
