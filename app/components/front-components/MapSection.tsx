@@ -12,11 +12,11 @@ export default function MapSection() {
   return (
     <div className={"flex flex-col lg:flex-row gap-16 w-full "}>
       {/* MapComponent takes 70% width on large devices */}
-      <div className={"w-full lg:w-[60%]"}>
+      <div className={"w-full xl:w-[60%]"}>
         <MapComponent />
       </div>
 
-      <div className={"w-full lg:w-[30%] flex flex-col   space-y-7"}>
+      <div className={"w-full xl:w-[30%] flex flex-col space-y-7"}>
         <Location />
         <OpeningTimes />
 

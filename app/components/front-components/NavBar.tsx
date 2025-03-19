@@ -11,7 +11,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MenuIcon } from "lucide-react";
+import {
+  CarFront,
+  HelpingHand,
+  House,
+  MenuIcon,
+  MessageSquareMore,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -25,18 +32,22 @@ const links = [
   {
     name: "Showroom",
     href: "/showroom",
+    icon: CarFront,
   },
   {
     name: "Services",
     href: "/services",
+    icon: HelpingHand,
   },
   {
     name: "Contact Us",
     href: "/contact-us",
+    icon: MessageSquareMore,
   },
   {
     name: "About Us",
     href: "/about-us",
+    icon: Users,
   },
 ];
 
@@ -102,17 +113,71 @@ export default function NavBar() {
         <div className="lg:hidden absolute right-[90%]">
           <Sheet>
             <SheetTrigger>
-              <MenuIcon className={"text-white"} />
+              <MenuIcon className={"text-gray-300"} />
             </SheetTrigger>
-            <SheetContent className="flex flex-col h-full" side="left">
+            <SheetContent
+              className="flex flex-col bg-customGrayBackground border border-customGrayBackground px-4"
+              side="top"
+            >
               {/* Title and Description */}
-              <SheetTitle>Hello</SheetTitle>
-              <SheetDescription>Welcome to iTER</SheetDescription>
+              <SheetTitle
+                className={
+                  "mb-4 text-2xl md:text-4xl text-gray-300 flex items-center justify-center w-full"
+                }
+              >
+                <Image
+                  alt={"logo"}
+                  src={"/Rockside_logo.jpeg"}
+                  height={120}
+                  width={210}
+                  className={
+                    "object-fill transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 w-full max-w-[210px] md:max-w-[380px] h-auto"
+                  }
+                />
+              </SheetTitle>
+              <SheetDescription></SheetDescription>
 
-              {/* Content */}
-              <SheetClose className="flex flex-col flex-1 mt-5 space-y-2  "></SheetClose>
+              <div
+                className={
+                  "gap-3 md:gap-10 flex justify-center items-center flex-col md:flex-row"
+                }
+              >
+                <SheetClose
+                  asChild
+                  className={"flex md:flex-col items-center justify-center"}
+                >
+                  <Link
+                    href={"/"}
+                    className={
+                      "text-xl md:text-2xl text-customGrayText font-medium"
+                    }
+                  >
+                    <House className={"h-5 w-5 mr-2 md:h-10 md:w-10"} />
+                    Home
+                  </Link>
+                </SheetClose>
 
-              <SheetFooter></SheetFooter>
+                {links.map((link) => {
+                  const Icon = link.icon; // Get the icon component dynamically
+                  return (
+                    <SheetClose
+                      asChild
+                      key={link.href}
+                      className={"flex md:flex-col items-center justify-center"}
+                    >
+                      <Link
+                        className={
+                          "text-xl md:text-2xl text-customGrayText font-medium"
+                        }
+                        href={link.href}
+                      >
+                        <Icon className={"h-5 w-5 md:h-10 md:w-10 mr-2"} />
+                        {link.name}
+                      </Link>
+                    </SheetClose>
+                  );
+                })}
+              </div>
             </SheetContent>
           </Sheet>
         </div>

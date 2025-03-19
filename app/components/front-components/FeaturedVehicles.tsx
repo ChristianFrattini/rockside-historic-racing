@@ -34,7 +34,7 @@ export default async function FeaturedVehicles() {
         >
           Explore Our Featured Vehicles
         </h2>
-        <div className={"mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mx-5"}>
+        <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 mx-5"}>
           {data.map((item) => (
             <VehicleCard key={item.id} item={item} />
           ))}

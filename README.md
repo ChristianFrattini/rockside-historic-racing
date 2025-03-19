@@ -9,7 +9,7 @@ change dashboard to live numbers admin area
 
 add href to footer site index - DONE
 
-finish mobile nav menu
+finish mobile nav menu - DONE
 
 change pin position on the map
 change coordinates on the "get directions" button in the contact us page
@@ -21,3 +21,9 @@ add privacy info
 
 ##################
 SPARE PARTS?????????
+
+##################
+FOR LIVE DEMO LUNCH
+
+no store
+loading states

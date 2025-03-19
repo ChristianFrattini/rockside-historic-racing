@@ -100,7 +100,7 @@ export default function Showroom({ data }: iAppProps) {
       </p>
       {/*<TypewriterEffectSmooth className={"mb-4"} words={words} />*/}{" "}
       {/*typewriter effect NOT mobile responsive*/}
-      <p className={"text-sm text-gray-600 leading-7 md:mb-10 mb-5"}>
+      <p className={"text-sm text-gray-700 leading-7 md:mb-10 mb-5"}>
         **Unlike modern cars, each classic car is genuinely one-of-a-kind. Some
         cars will be original, while others may have modifications. Many will
         have been refurbished, and some completely rebuilt. We always recommend
