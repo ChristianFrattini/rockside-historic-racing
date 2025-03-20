@@ -27,6 +27,8 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const links = [
   {
@@ -53,6 +55,7 @@ const links = [
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -148,9 +151,12 @@ export default function NavBar() {
                 >
                   <Link
                     href={"/"}
-                    className={
-                      "text-xl md:text-2xl text-customGrayText font-medium"
-                    }
+                    className={cn(
+                      "text-xl md:text-2xl font-medium",
+                      "/" === pathname
+                        ? " text-red-700 "
+                        : "text-customGrayText",
+                    )}
                   >
                     <House className={"h-5 w-5 mr-2 md:h-10 md:w-10"} />
                     Home
@@ -166,9 +172,12 @@ export default function NavBar() {
                       className={"flex md:flex-col items-center justify-center"}
                     >
                       <Link
-                        className={
-                          "text-xl md:text-2xl text-customGrayText font-medium"
-                        }
+                        className={cn(
+                          "text-xl md:text-2xl font-medium",
+                          link.href === pathname
+                            ? " text-red-700 "
+                            : "text-customGrayText",
+                        )}
                         href={link.href}
                       >
                         <Icon className={"h-5 w-5 md:h-10 md:w-10 mr-2"} />

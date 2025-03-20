@@ -1,23 +1,21 @@
-TODO
+#######TODO#######
 
-add validation error messages on spare parts form - ADMIN SECTION
-show a message such as "nothing yet..." if there is no data in the tables - ADMIN SECTION
-implement search bar? - ADMIN SECTION
+ADMIN
+add validation error messages on spare parts form
+show a message such as "nothing yet..." if there is no data in the tables
+implement search bar?
 change dashboard to live numbers admin area
 
 ############################################################################
 
-add href to footer site index - DONE
-
-finish mobile nav menu - DONE
-
+FRONT
 change pin position on the map
 change coordinates on the "get directions" button in the contact us page
 change opening times
 add address
 optional - review typewriter effect in showroom page (not mobile responsive)
-show message on showroom page if filtering result is empty - DONE
 add privacy info
+create action for sending email STARTED (TODO complete action)
 
 ##################
 SPARE PARTS?????????
@@ -26,4 +24,4 @@ SPARE PARTS?????????
 FOR LIVE DEMO LUNCH
 
 no store
-loading states
+loading states DONE
