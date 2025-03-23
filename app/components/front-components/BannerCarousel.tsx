@@ -19,7 +19,7 @@ export default function BannerCarousel({ data }: iAppProps) {
   const images = data.map((item) => item.imageString);
 
   return (
-    <ImagesSlider className="h-[110vh]" images={images}>
+    <ImagesSlider className="lg:h-[110vh] h-[103vh]" images={images}>
       <motion.div
         initial={{
           opacity: 0,

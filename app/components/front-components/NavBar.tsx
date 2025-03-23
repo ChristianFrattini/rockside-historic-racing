@@ -66,7 +66,7 @@ export default function NavBar() {
       <div
         className={`flex lg:justify-between items-center justify-center bg-customGrayBackground  ${
           isScrolled ? " h-[5rem]" : " h-[5.7rem]"
-        }   px-7  transition-all ease-in-out duration-500 backdrop-blur-xl opacity-90`}
+        }   px-7  transition-all ease-in-out duration-500 lg:backdrop-blur-xl backdrop-blur-md opacity-95 lg:opacity-90`}
       >
         <div className={""}>
           <Link href={"/"}>
