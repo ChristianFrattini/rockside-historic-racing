@@ -6,7 +6,6 @@ import { parseWithZod } from "@conform-to/zod";
 import { bannerSchema, spareSchema, VehicleSchema } from "../lib/zodSchemas";
 import prisma from "../lib/db";
 import { utDeleteImage } from "../lib/uploadthingDelete/imageDelete";
-import { Resend } from "resend";
 
 export async function addVehicle(previousState: unknown, formData: FormData) {
   const { getUser } = getKindeServerSession();

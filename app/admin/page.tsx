@@ -6,13 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  CarFront,
-  ChevronRight,
-  ChevronRightCircle,
-  Cog,
-  Images,
-} from "lucide-react";
+import { CarFront, ChevronRight, Cog } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 

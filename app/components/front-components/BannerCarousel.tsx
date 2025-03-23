@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
+import React from "react";
+import { motion } from "framer-motion";
+
 import { ImagesSlider } from "@/components/ui/images-slider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

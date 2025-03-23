@@ -1,8 +1,7 @@
-import FeaturedVehicles from "@/app/components/front-components/FeaturedVehicles";
 import Showroom from "@/app/components/front-components/Showroom";
-import VehicleCard from "@/app/components/front-components/VehicleCard";
+
 import prisma from "@/app/lib/db";
-import { Separator } from "@/components/ui/separator";
+
 import { notFound } from "next/navigation";
 import React from "react";
 

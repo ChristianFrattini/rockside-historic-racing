@@ -30,7 +30,7 @@ async function getData(id: string) {
 export default async function VehicleRoute({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   //console.log(params);
   const { id } = await params;

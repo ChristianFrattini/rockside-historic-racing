@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import MapComponent from "./Map";
-import { Clock, MapPinned } from "lucide-react";
-import { Separator } from "@radix-ui/react-separator";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Location from "./Location";

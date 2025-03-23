@@ -8,6 +8,7 @@ export async function utDeleteImage(imageUrl: string) {
     await utapi.deleteFiles(imageKey);
     return { success: true };
   } catch (error) {
+    console.log(error);
     return { success: false };
   }
 }

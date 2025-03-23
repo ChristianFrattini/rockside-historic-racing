@@ -1,5 +1,4 @@
 import WorkInProgress from "@/app/components/front-components/WorkInProgress";
-import { LoaderCircle } from "lucide-react";
 import React from "react";
 
 export default function ServicesPage() {

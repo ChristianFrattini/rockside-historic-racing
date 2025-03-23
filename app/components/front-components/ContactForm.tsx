@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+
 import { sendEmail } from "@/app/actions/email";
 import { toast } from "react-hot-toast";
 
@@ -23,9 +23,12 @@ export default function ContactForm({ name, id }: ContactFormProps) {
         action={async (formData) => {
           try {
             await sendEmail(formData);
-            toast.success("Email sent successfully!");
+            toast.success(
+              "Message sent successfully! We`ll get in touch soon!",
+            );
           } catch (error) {
-            toast.error("Failed to send email. Please try again.");
+            toast.error("Failed to send message. Please try again...");
+            console.log(error);
           }
         }}
       >

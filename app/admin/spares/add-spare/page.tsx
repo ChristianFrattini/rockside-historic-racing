@@ -167,6 +167,7 @@ export default function AddNewSpare() {
                 value={images}
                 key={fields.images.key}
                 name={fields.images.name}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 defaultValue={fields.images.initialValue as any}
               />
 

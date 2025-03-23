@@ -1,4 +1,3 @@
-import { ContactFormSkeleton } from "@/app/components/front-components/ContactFormSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 

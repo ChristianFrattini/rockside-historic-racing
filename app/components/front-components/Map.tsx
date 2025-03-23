@@ -13,10 +13,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import Style from "ol/style/Style";
 import Icon from "ol/style/Icon";
-import {
-  defaults as defaultInteractions,
-  MouseWheelZoom,
-} from "ol/interaction";
+import { defaults as defaultInteractions } from "ol/interaction";
 
 const MapComponent = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
@@ -72,7 +69,7 @@ const MapComponent = () => {
     map.addLayer(vectorLayer);
 
     return () => map.setTarget(undefined); // Cleanup when unmounting
-  }, []);
+  }, [longitude]);
 
   return <div ref={mapRef} style={{ height: "650px", width: "100%" }} />;
 };

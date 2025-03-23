@@ -13,7 +13,11 @@ import Link from "next/link";
 
 export const dynamicParams = true; //possibly to remove
 
-export default async function Delete({ params }: { params: { id: string } }) {
+export default async function Delete({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   return (
     <div className={"h-[80vh] w-full flex items-center justify-center"}>

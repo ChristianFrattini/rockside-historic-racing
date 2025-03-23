@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { UploadDropzone } from "@/app/lib/uploadthing";
 import { ChevronLeft, XIcon } from "lucide-react";
-import { useFormState } from "react-dom";
+
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { VehicleSchema } from "@/app/lib/zodSchemas";
@@ -92,7 +92,7 @@ export default function EditVehicleForm({ data }: iAppProps) {
 
       <Card className={"mt-5 border-none shadow-none "}>
         <CardHeader>
-          <CardTitle>Edit "{data.name}"</CardTitle>
+          <CardTitle>Edit {data.name}</CardTitle>
           <CardDescription>
             Please, edit the form and save to apply changes.
           </CardDescription>
@@ -215,9 +215,8 @@ export default function EditVehicleForm({ data }: iAppProps) {
                 value={images}
                 key={fields.images.key}
                 name={fields.images.name}
-                /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 defaultValue={fields.images.initialValue as any}
-                /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
               ></input>
               {images.length > 0 ? (
                 <div className={"flex gap-5"}>
@@ -249,10 +248,9 @@ export default function EditVehicleForm({ data }: iAppProps) {
                   endpoint={"imageUploader"}
                   onClientUploadComplete={(res) => {
                     setImages(res.map((r) => r.url));
-                  }} /* eslint-disable @typescript-eslint/no-unused-vars*/
+                  }} // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   onUploadError={(res) => {
                     alert("Error: Upload Unsuccessfull");
-                    /* eslint-disable @typescript-eslint/no-unused-vars*/
                   }}
                 />
               )}

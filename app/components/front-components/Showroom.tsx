@@ -2,28 +2,20 @@
 import { Separator } from "@/components/ui/separator";
 import React, { useState } from "react";
 import VehicleCard from "./VehicleCard";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+
 import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { motion } from "framer-motion";
-import {
+
+/*import {
   TypewriterEffect,
   TypewriterEffectSmooth,
-} from "@/components/ui/typewriter-effect";
+} from "@/components/ui/typewriter-effect";*/
 
 interface iAppProps {
   data: {

@@ -60,7 +60,7 @@ export default function HeroLinkCards() {
           />
           <div className="absolute inset-0 bg-black/40" /> {/* Dark overlay */}
           <div className="absolute inset-0 p-4 flex items-end">
-            <Link href="">
+            <Link href="/about-us">
               <h3 className="text-white font-semibold">About Us</h3>
             </Link>
           </div>
