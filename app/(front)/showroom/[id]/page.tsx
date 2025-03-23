@@ -57,7 +57,7 @@ export default async function VehicleRoute({
             </p>
             <div className={"hidden md:hidden lg:block "}>
               <div className={"mt-8"}>
-                <ContactForm />
+                <ContactForm name={data.name} id={data.id} />
               </div>
             </div>
           </div>

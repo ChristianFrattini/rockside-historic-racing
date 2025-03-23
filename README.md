@@ -16,6 +16,7 @@ add address
 optional - review typewriter effect in showroom page (not mobile responsive)
 add privacy info
 create action for sending email STARTED (TODO complete action)
+change recipient email in email action
 
 ##################
 SPARE PARTS?????????

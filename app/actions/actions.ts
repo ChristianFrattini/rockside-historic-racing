@@ -6,7 +6,7 @@ import { parseWithZod } from "@conform-to/zod";
 import { bannerSchema, spareSchema, VehicleSchema } from "../lib/zodSchemas";
 import prisma from "../lib/db";
 import { utDeleteImage } from "../lib/uploadthingDelete/imageDelete";
-//import { Resend } from "resend";
+import { Resend } from "resend";
 
 export async function addVehicle(previousState: unknown, formData: FormData) {
   const { getUser } = getKindeServerSession();
@@ -317,18 +317,4 @@ export async function editSpare(prevState: unknown, formData: FormData) {
     },
   });
   redirect("/admin/spares/");
-}
-
-//const resend = new Resend(process.env.RESEND_KEY);
-export async function sendEmail(formData: FormData) {
-  console.log(formData.get("firstName"));
-  console.log(formData.get("lastName"));
-  console.log(formData.get("message"));
-
-  /*resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "chrifrat1@gmail.com",
-    subject: "message from rockside",
-    text: "text",
-  });*/
 }

@@ -7,15 +7,26 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { sendEmail } from "@/app/actions/actions";
+import { sendEmail } from "@/app/actions/email";
+import { toast } from "react-hot-toast";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  name?: string;
+  id?: string;
+}
+
+export default function ContactForm({ name, id }: ContactFormProps) {
   return (
     <motion.div className={"text-center bg-greyish  rounded-xl"}>
       <form
         className={"mt-5 flex flex-col dark:text-black px-3 pb-2 gap-5"}
         action={async (formData) => {
-          await sendEmail(formData);
+          try {
+            await sendEmail(formData);
+            toast.success("Email sent successfully!");
+          } catch (error) {
+            toast.error("Failed to send email. Please try again.");
+          }
         }}
       >
         <div className={"flex space-x-3 justify-between"}>
@@ -63,17 +74,11 @@ export default function ContactForm() {
             name={"message"}
           />
         </div>
-        {/* Add ReCAPTCHA Component */}
-        {/*<ReCAPTCHA
-          sitekey={"6Ldbv1wqAAAAAP9ZMxTo3wULO07NWEPx88g2BSu5"} //?????? TO ADD IN THE ENV FILE???????
-          onChange={handleRecaptchaChange}
-          className="my-4" // Optional: Add some margin for better spacing
-        />*/}
-
-        {/*<SubmitButton text={"Send Message"} loadingText={"Sending"} />*/}
-        <Button variant={"default"} type={"submit"}>
-          Send Message
-        </Button>
+        {id && <input className={"hidden"} defaultValue={id} name="carId" />}
+        {name && (
+          <input className={"hidden"} defaultValue={name} name="carName" />
+        )}
+        <SubmitButton text={"Send Message"} loadingText={"Sending"} />
       </form>
 
       <p
