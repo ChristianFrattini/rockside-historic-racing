@@ -12,6 +12,7 @@ async function getData() {
       id: true,
       name: true,
       brand: true,
+      year: true,
       price: true,
       images: true,
     },
@@ -35,7 +36,7 @@ export default async function FeaturedVehicles() {
           Explore Our Featured Vehicles
         </h2>
         <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 mx-5"}>
-          {data.map((item) => (
+          {data.slice(0, 3).map((item) => (
             <VehicleCard key={item.id} item={item} />
           ))}
         </div>

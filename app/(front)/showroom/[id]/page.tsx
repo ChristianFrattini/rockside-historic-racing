@@ -73,7 +73,7 @@ export default async function VehicleRoute({
           </p>
         </div>
         <div className={"lg:hidden"}>
-          <ContactForm />
+          <ContactForm name={data.name} id={data.id} />
         </div>
       </div>
 

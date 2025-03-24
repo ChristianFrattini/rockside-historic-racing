@@ -17,6 +17,9 @@ export default function Loading() {
           <Skeleton className="h-10 w-[15rem]" />{" "}
         </div>
         <div className="flex items-center justify-center">
+          <Skeleton className="h-10 w-[15rem]" />{" "}
+        </div>
+        <div className="flex items-center justify-center">
           <Skeleton className="h-6 w-20" />{" "}
           <Skeleton className="h-6 w-10 ml-5" />{" "}
         </div>

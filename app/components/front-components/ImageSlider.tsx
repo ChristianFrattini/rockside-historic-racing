@@ -113,7 +113,7 @@ export default function ImageSlider({ images }: iAppProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
           onClick={toggleForeground} // Close modal when clicking outside
         >
-          <div className="relative max-w-[90vw] max-h-[90vh]">
+          <div className="relative max-w-[100vw] max-h-[100vh]">
             <Lens>
               <Image
                 src={images[mainImageIndex]}

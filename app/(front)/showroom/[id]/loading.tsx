@@ -7,7 +7,7 @@ export default function Loading() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.6fr] gap-8 items-start">
         {/* Image Slider Skeleton */}
         <div className="w-full overflow-hidden">
-          <Skeleton className="h-[600px] w-full rounded-lg" />
+          <Skeleton className="lg:h-[600px] h-[400px] w-full rounded-lg" />
         </div>
 
         {/* Name, Brand, and Price Skeleton */}

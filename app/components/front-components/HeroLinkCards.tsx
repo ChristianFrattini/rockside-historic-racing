@@ -15,13 +15,13 @@ export default function HeroLinkCards() {
       whileInView={{ opacity: 1, y: 0 }} // Animate when in view
       viewport={{ once: true, amount: 0.35 }} // Trigger when 50% of the component is visible
       transition={{ duration: 0.7, ease: "easeInOut" }} // Smooth transition
-      className="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-4 mx-5 "
+      className="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4 sm:mx-5 "
     >
       {/* Enlarged "Showroom" Card */}
       <motion.div
         whileHover={{ scale: 1.02 }} // Scale up slightly on hover
         transition={{ type: "tween", duration: 0.175 }} // Springy effect
-        className="group sm:col-span-3 rounded-lg overflow-hidden relative h-80"
+        className="group sm:col-span-3 sm:rounded-lg overflow-hidden relative h-80"
       >
         <Image
           src={showroom}
@@ -50,7 +50,7 @@ export default function HeroLinkCards() {
         <motion.div
           whileHover={{ scale: 1.05 }} // Scale up slightly on hover
           transition={{ type: "tween", duration: 0.175 }} // Springy effect
-          className="group rounded-lg overflow-hidden relative flex-1"
+          className="group sm:rounded-lg overflow-hidden relative flex-1"
         >
           <Image
             src={about}
@@ -70,7 +70,7 @@ export default function HeroLinkCards() {
         <motion.div
           whileHover={{ scale: 1.05 }} // Scale up slightly on hover
           transition={{ type: "tween", duration: 0.175 }} // Springy effect
-          className="group rounded-lg overflow-hidden relative flex-1 bg-purpleRed"
+          className="group sm:rounded-lg overflow-hidden relative flex-1 bg-purpleRed"
         >
           <Link href="/contact-us">
             <MessageSquareMore

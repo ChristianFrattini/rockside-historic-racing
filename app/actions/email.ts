@@ -67,7 +67,11 @@ export async function sendEmail(formData: FormData) {
             <p>${data.message}</p>
           </div>
           <div class="footer">
-            Thank you for reaching out! We will get back to you soon. Rockside Historic Racing Team
+          ${
+            data.carId
+              ? `<p>View item page: <a href="https://rockside-historic-racing.vercel.app/showroom/${data.carId}" target="_blank">Click here</a></p>`
+              : ""
+          }
           </div>
         </div>
       </body>

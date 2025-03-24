@@ -9,6 +9,7 @@ interface iAppProps {
     id: string;
     name: string;
     brand: string;
+    year: number;
     price: number;
     images: string[];
   };
@@ -37,7 +38,9 @@ export default function VehicleCard({ item }: iAppProps) {
         />
 
         <div className="absolute bottom-0 left-0 p-4 text-white pointer-events-none">
-          <h3 className="text-base sm:text-lg font-bold mb-1">{item.name}</h3>
+          <h3 className="text-base sm:text-lg font-bold mb-1">
+            {item.name} ({item.year})
+          </h3>
           <p className="text-xs sm:text-sm text-gray-300 mb-1">{item.brand}</p>
           <p className="text-xs sm:text-sm font-semibold">£{item.price}</p>
         </div>

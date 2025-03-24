@@ -23,6 +23,7 @@ interface iAppProps {
     name: string;
     brand: string;
     price: number;
+    year: number;
     images: string[];
     isFeatured: boolean;
   }[];
@@ -63,6 +64,8 @@ export default function Showroom({ data }: iAppProps) {
   const [priceOrder, setPriceOrder] = useState<"highest" | "lowest" | null>(
     null,
   );
+
+  const [yearOrder, setYearOrder] = useState<"newest" | "oldest" | null>(null);
   const [showFeatured, setShowFeatured] = useState<boolean>(false);
 
   //  unique brands using a set
@@ -77,6 +80,10 @@ export default function Showroom({ data }: iAppProps) {
         return b.price - a.price;
       } else if (priceOrder === "lowest") {
         return a.price - b.price;
+      } else if (yearOrder === "newest") {
+        return b.year - a.year;
+      } else if (yearOrder === "oldest") {
+        return a.year - b.year;
       } else {
         return 0;
       }
@@ -110,14 +117,15 @@ export default function Showroom({ data }: iAppProps) {
       <Separator
         className={"w-full border md:mb-10 mb-5 border-customGrayBackground "}
       />
-      <div className={"flex md:flex-row flex-col md:justify-between gap-5"}>
-        <div className={"flex items-center justify-center"}>
+      <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-between items-center gap-3 sm:gap-4 lg:gap-5">
+        {/* Brand Filter */}
+        <div className="w-full sm:w-[48%] lg:w-auto flex items-center justify-center">
           <Select
             onValueChange={(value) =>
               setSelectedBrand(value === "all" ? null : value)
             }
           >
-            <SelectTrigger className="w-[15rem] bg-transparent border-2 border-customGrayBackground focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none">
+            <SelectTrigger className="w-full min-w-[12rem] bg-transparent border-2 border-customGrayBackground focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none">
               <SelectValue placeholder="Filter by Brand" />
             </SelectTrigger>
             <SelectContent>
@@ -126,50 +134,54 @@ export default function Showroom({ data }: iAppProps) {
                   {brand}
                 </SelectItem>
               ))}
-              {/* Add a "Clear" option */}
               <SelectItem value="all">All</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
-        <div className={"flex items-center justify-center"}>
+        {/* Price Filter */}
+        <div className="w-full sm:w-[48%] lg:w-auto flex items-center justify-center">
           <Select
             onValueChange={(value) =>
               setPriceOrder(value as "highest" | "lowest" | null)
             }
           >
-            <SelectTrigger className="w-[15rem] bg-transparent border-2 border-customGrayBackground focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none">
+            <SelectTrigger className="w-full min-w-[12rem] bg-transparent border-2 border-customGrayBackground focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none">
               <SelectValue placeholder="Filter by Price" />
             </SelectTrigger>
-            <SelectContent className="border-none shadow-none ">
-              <SelectItem
-                value="highest"
-                className="focus:outline-none focus:ring-0 focus:border-none focus:shadow-none"
-              >
-                Highest
-              </SelectItem>
-              <SelectItem
-                value="lowest"
-                className="focus:outline-none focus:ring-0 focus:border-none focus:shadow-none hover:bg-slate-700"
-              >
-                Lowest
-              </SelectItem>
-              <SelectItem
-                value="clear"
-                className="focus:outline-none focus:ring-0 focus:border-none focus:shadow-none"
-              >
-                Clear
-              </SelectItem>
+            <SelectContent className="border-none shadow-none">
+              <SelectItem value="highest">Highest</SelectItem>
+              <SelectItem value="lowest">Lowest</SelectItem>
+              <SelectItem value="clear">Clear</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
-        <div className={"flex items-center justify-center"}>
-          <p>Featured</p>
+        {/* Year Filter */}
+        <div className="w-full sm:w-[48%] lg:w-auto flex items-center justify-center">
+          <Select
+            onValueChange={(value) =>
+              setYearOrder(value as "newest" | "oldest" | null)
+            }
+          >
+            <SelectTrigger className="w-full min-w-[12rem] bg-transparent border-2 border-customGrayBackground focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none">
+              <SelectValue placeholder="Filter by Year" />
+            </SelectTrigger>
+            <SelectContent className="border-none shadow-none">
+              <SelectItem value="newest">Newest</SelectItem>
+              <SelectItem value="oldest">Oldest</SelectItem>
+              <SelectItem value="clear">Clear</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Featured Toggle */}
+        <div className="w-full sm:w-[48%] lg:w-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+          <p className="text-sm sm:text-base">Featured Only</p>
           <Switch
             checked={showFeatured}
             onCheckedChange={setShowFeatured}
-            className={"ml-5 "}
+            className="sm:ml-0"
           />
         </div>
       </div>
