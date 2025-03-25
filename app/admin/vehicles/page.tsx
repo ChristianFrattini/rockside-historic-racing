@@ -63,56 +63,68 @@ export default async function Vehicles() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader className={"bg-slate-100"}>
-              <TableRow>
-                <TableHead className={"w-[100]px]"}>Image</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Brand</TableHead>
-                <TableHead>Year</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Date Created</TableHead>
-                <TableHead>View</TableHead>
-                <TableHead className={"text-end"}>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>
-                    <Image
-                      alt={`image${item.id}`}
-                      src={item.images[0]}
-                      height={70}
-                      width={70}
-                      className={"rounded-md object-cover h-20 w-20"}
-                    />
-                  </TableCell>
-                  <TableCell>{item.name}</TableCell>
-
-                  <TableCell>{item.brand}</TableCell>
-                  <TableCell>{item.year}</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  <TableCell>{formatDate(item.createdAt)}</TableCell>
-                  <TableCell>
-                    <Button variant={"outline"}>View</Button>
-                  </TableCell>
-                  <TableCell className={"text-end"}>
-                    <Button variant={"ghost"} size={"icon"} asChild>
-                      <Link href={`/admin/vehicles/${item.id}`}>
-                        <SquarePen className={"h-3 w-3 text-blue-600"} />
-                      </Link>
-                    </Button>
-                    <Button variant={"ghost"} size={"icon"}>
-                      <Link href={`/admin/vehicles/${item.id}/delete`}>
-                        <Trash2 className={"h-3 w-3 text-red-600"} />
-                      </Link>
-                    </Button>
-                  </TableCell>
+          {data.length > 0 ? (
+            <Table>
+              <TableHeader className={"bg-slate-100"}>
+                <TableRow>
+                  <TableHead className={"w-[100]px]"}>Image</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Brand</TableHead>
+                  <TableHead>Year</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Date Created</TableHead>
+                  <TableHead>View</TableHead>
+                  <TableHead className={"text-end"}>Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {data.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>
+                      <Image
+                        alt={`image${item.id}`}
+                        src={item.images[0]}
+                        height={70}
+                        width={70}
+                        className={"rounded-md object-cover h-20 w-20"}
+                      />
+                    </TableCell>
+                    <TableCell>{item.name}</TableCell>
+
+                    <TableCell>{item.brand}</TableCell>
+                    <TableCell>{item.year}</TableCell>
+                    <TableCell>{item.status}</TableCell>
+                    <TableCell>{formatDate(item.createdAt)}</TableCell>
+                    <TableCell>
+                      <Button variant={"outline"}>View</Button>
+                    </TableCell>
+                    <TableCell className={"text-end"}>
+                      <Button variant={"ghost"} size={"icon"} asChild>
+                        <Link href={`/admin/vehicles/${item.id}`}>
+                          <SquarePen className={"h-3 w-3 text-blue-600"} />
+                        </Link>
+                      </Button>
+                      <Button variant={"ghost"} size={"icon"}>
+                        <Link href={`/admin/vehicles/${item.id}/delete`}>
+                          <Trash2 className={"h-3 w-3 text-red-600"} />
+                        </Link>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          ) : (
+            <div className={"h-[30vh] flex justify-center items-center"}>
+              <p
+                className={
+                  "text-center text-md text-gray-600 p-2 rounded-lg underline font-semibold"
+                }
+              >
+                No Vehicle added yet.
+              </p>
+            </div>
+          )}
         </CardContent>
       </Card>
     </>
