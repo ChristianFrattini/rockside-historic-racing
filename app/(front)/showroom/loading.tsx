@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div className="py-12 lg:pt-[7rem] pt-[7.6rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="py-12 lg:pt-[7rem] pt-[8.5rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Skeleton className="h-10 w-48 md:mb-10 mb-1" />{" "}
       <Skeleton className="h-5 w-full mb-4" />{" "}
       <Skeleton className="h-4 w-full md:mb-10 mb-5" />{" "}

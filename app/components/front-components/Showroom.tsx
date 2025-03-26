@@ -90,7 +90,7 @@ export default function Showroom({ data }: iAppProps) {
     });
 
   return (
-    <div className="py-12 lg:pt-[7rem] pt-[7.6rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="py-12 lg:pt-[7rem] pt-[8.5rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <h2 className={"md:mb-10 mb-1 font-light md:text-4xl text-3xl"}>
         Showroom
       </h2>
