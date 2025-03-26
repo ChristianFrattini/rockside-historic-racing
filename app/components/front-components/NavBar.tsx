@@ -74,8 +74,8 @@ export default function NavBar() {
               alt={"logo"}
               src={"/Rockside_logo.jpeg"}
               priority
-              height={isScrolled ? 155 : 180}
-              width={isScrolled ? 255 : 280}
+              height={isScrolled ? 155 : 190}
+              width={isScrolled ? 255 : 290}
               className={
                 "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 "
               }
