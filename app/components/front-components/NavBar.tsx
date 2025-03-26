@@ -65,7 +65,7 @@ export default function NavBar() {
       {/*TO ADD CLASSNAME   className={"fixed top-0 w-full"} */}
       <div
         className={`flex lg:justify-between items-center justify-center bg-customGrayBackground  ${
-          isScrolled ? "lg:h-[5rem] h-[5.9rem]" : " lg:h-[5.7rem] h-[7.2rem]"
+          isScrolled ? "lg:h-[5rem] h-[5.9rem]" : " lg:h-[5.7rem] h-[7.1rem]"
         }   px-7  transition-all ease-in-out duration-500 lg:backdrop-blur-xl backdrop-blur-md opacity-95 lg:opacity-90`}
       >
         <div className={""}>
@@ -74,8 +74,8 @@ export default function NavBar() {
               alt={"logo"}
               src={"/Rockside_logo.jpeg"}
               priority
-              height={isScrolled ? 170 : 210}
-              width={isScrolled ? 270 : 310}
+              height={isScrolled ? 165 : 200}
+              width={isScrolled ? 265 : 300}
               className={
                 "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 "
               }
