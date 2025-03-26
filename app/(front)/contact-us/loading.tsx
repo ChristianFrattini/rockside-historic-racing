@@ -4,7 +4,7 @@ import React from "react";
 
 export default function loading() {
   return (
-    <div className="py-12 pt-[7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="py-12 lg:pt-[7rem] pt-[7.6rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Heading Skeleton */}
       <Skeleton className="h-10 w-1/4 mb-5 md:mb-10 rounded-lg" />
 

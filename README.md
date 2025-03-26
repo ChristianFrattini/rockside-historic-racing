@@ -2,9 +2,8 @@
 
 ADMIN
 add validation error messages on spare parts form
-show a message such as "nothing yet..." if there is no data in the tables DONE
 implement search bar?
-change dashboard to live numbers admin area DONE
+use Sheet close in mobile responsive menu
 
 ############################################################################
 

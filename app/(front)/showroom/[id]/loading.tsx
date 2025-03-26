@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div className="flex flex-col gap-8 py-12 pt-[7rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col gap-8 py-12 lg:pt-[7rem] pt-[7.6rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.6fr] gap-8 items-start">
         {/* Image Slider Skeleton */}
         <div className="w-full overflow-hidden">

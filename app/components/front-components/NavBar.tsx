@@ -65,7 +65,7 @@ export default function NavBar() {
       {/*TO ADD CLASSNAME   className={"fixed top-0 w-full"} */}
       <div
         className={`flex lg:justify-between items-center justify-center bg-customGrayBackground  ${
-          isScrolled ? " h-[5rem]" : " h-[5.7rem]"
+          isScrolled ? " lg:h-[5rem] h-[6rem]" : " lg:h-[5.7rem] h-[6.7rem]"
         }   px-7  transition-all ease-in-out duration-500 lg:backdrop-blur-xl backdrop-blur-md opacity-95 lg:opacity-90`}
       >
         <div className={""}>
@@ -74,8 +74,8 @@ export default function NavBar() {
               alt={"logo"}
               src={"/Rockside_logo.jpeg"}
               priority
-              height={isScrolled ? 80 : 120}
-              width={isScrolled ? 210 : 270}
+              height={isScrolled ? 130 : 150}
+              width={isScrolled ? 250 : 280}
               className={
                 "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 "
               }
@@ -124,11 +124,12 @@ export default function NavBar() {
                 <Image
                   alt={"logo"}
                   src={"/Rockside_logo.jpeg"}
-                  height={120}
-                  width={210}
+                  height={180}
+                  width={300}
                   className={
-                    "object-fill transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 w-full max-w-[210px] md:max-w-[380px] h-auto"
+                    "object-fill transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 w-full max-w-[300px] md:max-w-[380px] h-auto"
                   }
+                  priority
                 />
               </SheetTitle>
               <SheetDescription></SheetDescription>

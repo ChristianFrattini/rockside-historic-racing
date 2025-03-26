@@ -16,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { PlusCircle, SquarePen, Trash2 } from "lucide-react";
+import { FileX, PlusCircle, SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -118,10 +118,11 @@ export default async function Vehicles() {
             <div className={"h-[30vh] flex justify-center items-center"}>
               <p
                 className={
-                  "text-center text-md text-gray-600 p-2 rounded-lg underline font-semibold"
+                  "text-center text-lg text-gray-600 p-2 rounded-lg underline font-semibold flex flex-col items-center justify-center"
                 }
               >
-                No Vehicle added yet.
+                <FileX className={"w-12 h-12 mb-4"} />
+                No vehicle added yet.
               </p>
             </div>
           )}
