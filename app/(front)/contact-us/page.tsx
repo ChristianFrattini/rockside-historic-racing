@@ -12,6 +12,10 @@ export default function ContactUsPage() {
       <h2 className={"md:mb-10 mb-5 font-light md:text-4xl text-3xl"}>
         Contact Us
       </h2>
+      <p className={"text-lg text-gray-700 font-semibold leading-6 mb-5"}>
+        Reach out to us for any inquiries, and our team will get back to you as
+        soon as possible.
+      </p>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10 lg:justify-between space-y-8 lg:space-y-0">
         <div className="w-full lg:w-[60%]">

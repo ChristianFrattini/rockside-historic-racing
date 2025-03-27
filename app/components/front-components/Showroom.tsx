@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import SpareLink from "./SpareLink";
 
 /*import {
   TypewriterEffect,
@@ -94,7 +95,7 @@ export default function Showroom({ data }: iAppProps) {
       <h2 className={"md:mb-10 mb-1 font-light md:text-4xl text-3xl"}>
         Showroom
       </h2>
-      <p className={"text-base text-gray-700 font-semibold leading-6 mb-4"}>
+      <p className={"text-lg text-gray-700 font-semibold leading-6 mb-4"}>
         Welcome to the Rockside Historic Racing Showroom.{" "}
       </p>
       {/*<TypewriterEffectSmooth className={"mb-4"} words={words} />*/}{" "}
@@ -114,6 +115,13 @@ export default function Showroom({ data }: iAppProps) {
         </a>
         .**
       </p>
+      <div
+        className={
+          "flex justify-center items-center md:mb-10 mb-8 px-4 sm:px-6 lg:px-8"
+        }
+      >
+        <SpareLink />
+      </div>
       <Separator
         className={"w-full border md:mb-10 mb-5 border-customGrayBackground "}
       />

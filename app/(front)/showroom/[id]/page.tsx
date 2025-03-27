@@ -1,7 +1,9 @@
 import ContactForm from "@/app/components/front-components/ContactForm";
 import FeaturedVehicles from "@/app/components/front-components/FeaturedVehicles";
 import ImageSlider from "@/app/components/front-components/ImageSlider";
+import SpareLink from "@/app/components/front-components/SpareLink";
 import prisma from "@/app/lib/db";
+import { Separator } from "@/components/ui/separator";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -75,10 +77,14 @@ export default async function VehicleRoute({
         <div className={"lg:hidden"}>
           <ContactForm name={data.name} id={data.id} />
         </div>
-      </div>
 
-      <div className="mt-7 mx-auto max-w-7xl ">
-        <FeaturedVehicles />
+        <div className="-mx-5 max-w-7xl ">
+          <FeaturedVehicles />
+        </div>
+        <Separator className={"w-full border  border-customGrayBackground "} />
+        <div className={"flex justify-center items-center mt-5 "}>
+          <SpareLink />
+        </div>
       </div>
     </>
   );

@@ -7,6 +7,7 @@ export default function loading() {
     <div className="py-12 lg:pt-[7rem] pt-[8.5rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Heading Skeleton */}
       <Skeleton className="h-10 w-1/4 mb-5 md:mb-10 rounded-lg" />
+      <Skeleton className="h-10 w-1/4 mb-5 md:mb-10 rounded-lg" />
 
       {/* Main Content Skeleton */}
       <div className="flex flex-col lg:flex-row lg:space-x-10 lg:justify-between space-y-8 lg:space-y-0">

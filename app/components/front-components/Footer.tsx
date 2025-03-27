@@ -119,11 +119,17 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="mt-10 flex items-center justify-center">
+      <div className="mt-10 flex items-center justify-center flex-col">
         <p className="text-xs leading-5 text-greyish text-center">
           &copy; {new Date().getFullYear()} Rockside Historic Racing -
           Sibsportperformance - Rockside Classic+Vintage. All Rights Reserved.
         </p>
+        <Link
+          href={"/privacy-notice"}
+          className={"text-xs text-gray-300 p-2 underline  "}
+        >
+          Privacy Notice
+        </Link>
       </div>
     </div>
   );
