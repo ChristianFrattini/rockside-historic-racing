@@ -78,7 +78,7 @@ export default async function VehicleRoute({
           <ContactForm name={data.name} id={data.id} />
         </div>
 
-        <div className="-mx-5 max-w-7xl ">
+        <div className="max-w-7xl ">
           <FeaturedVehicles />
         </div>
         <Separator className={"w-full border  border-customGrayBackground "} />

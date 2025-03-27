@@ -10,7 +10,10 @@ export default function IndexPage() {
       <div className={"bg-greyish"}>
         <Hero />
         <HeroLinkCards />
-        <FeaturedVehicles />
+        <div className={"mx-5"}>
+          <FeaturedVehicles />
+        </div>
+
         <div
           className={
             "flex lg:flex-row lg:justify-between gap-5 flex-col mx-5 mt-7"

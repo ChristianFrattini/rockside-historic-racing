@@ -33,12 +33,12 @@ export default async function FeaturedVehicles() {
       <div className={"mt-7 mb-4 "}>
         <h2
           className={
-            "text-xl md:text-2xl font-semibold tracking-tight text-customBlack/80 mx-5 "
+            "text-xl md:text-2xl font-semibold tracking-tight text-customBlack/80  "
           }
         >
           Explore Our Featured Vehicles
         </h2>
-        <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 mx-5"}>
+        <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 "}>
           {data.slice(0, 3).map((item) => (
             <VehicleCard key={item.id} item={item} />
           ))}
