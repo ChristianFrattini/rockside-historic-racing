@@ -20,10 +20,9 @@ export default function OpeningTimes() {
           <h2 className="text-xl sm:text-2xl font-bold">Opening Times</h2>{" "}
         </div>
 
-        {/* Separator */}
         <Separator className="border-[2px] border-customRed rounded-xl" />
 
-        <div className="px-2 py-1 bg-customGrayBackground/10 rounded-md">
+        <div className="px-2 sm:px-3 py-1.5 bg-customGrayBackground/10 rounded-md w-full">
           <table className="w-full">
             <tbody>
               {openingTimes.map((time) => (
@@ -32,11 +31,11 @@ export default function OpeningTimes() {
                   className="hover:bg-gray-300 duration-100 rounded-md"
                 >
                   {/* Day Column */}
-                  <td className="px-2 py-1.5 text-xs sm:text-base text-gray-700 font-medium whitespace-nowrap">
+                  <td className="px-2 py-1.5 text-xs xs:text-sm sm:text-base text-gray-700 font-medium whitespace-nowrap w-1/2 sm:w-auto">
                     {time.day}
                   </td>
-                  {/* Hours Column */}
-                  <td className="px-2 py-1 text-xs sm:text-base text-gray-600 whitespace-nowrap">
+                  {/* Hours Column - always right-aligned except on small mobile */}
+                  <td className="px-2 py-1 text-xs xs:text-sm sm:text-base text-gray-600 whitespace-nowrap text-right md:text-right">
                     {time.hours}
                   </td>
                 </tr>
