@@ -18,11 +18,11 @@ export default function ContactUsPage() {
       </p>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10 lg:justify-between space-y-8 lg:space-y-0">
-        <div className="w-full lg:w-[60%]">
+        <div className="w-full lg:w-[58%]">
           <ContactForm />
         </div>
 
-        <div className="flex flex-col gap-5 w-full lg:w-[35%]">
+        <div className="flex flex-col gap-5 w-full lg:w-[42%]">
           <Location />
           <OpeningTimes />
         </div>
