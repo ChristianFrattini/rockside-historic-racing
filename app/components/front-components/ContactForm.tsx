@@ -11,11 +11,12 @@ import { sendEmail } from "@/app/actions/email";
 import { toast } from "react-hot-toast";
 
 interface ContactFormProps {
+  page: string;
   name?: string;
   id?: string;
 }
 
-export default function ContactForm({ name, id }: ContactFormProps) {
+export default function ContactForm({ page, name, id }: ContactFormProps) {
   return (
     <motion.div className={"text-center bg-greyish  rounded-xl"}>
       <form
@@ -77,10 +78,11 @@ export default function ContactForm({ name, id }: ContactFormProps) {
             name={"message"}
           />
         </div>
-        {id && <input className={"hidden"} defaultValue={id} name="carId" />}
+        {id && <input className={"hidden"} defaultValue={id} name="itemId" />}
         {name && (
-          <input className={"hidden"} defaultValue={name} name="carName" />
+          <input className={"hidden"} defaultValue={name} name="itemName" />
         )}
+        {page && <input className={"hidden"} defaultValue={page} name="page" />}
         <SubmitButton text={"Send Message"} loadingText={"Sending"} />
       </form>
 

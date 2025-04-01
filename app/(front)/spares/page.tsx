@@ -1,10 +1,31 @@
-import WorkInProgress from "@/app/components/front-components/WorkInProgress";
+import SpareParts from "@/app/components/front-components/SpareParts";
+import prisma from "@/app/lib/db";
+import { notFound } from "next/navigation";
 import React from "react";
 
-export default function SparesPage() {
-  return (
-    <div className="py-12 lg:pt-[7rem] pt-[8.5rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <WorkInProgress />
-    </div>
-  );
+async function getData() {
+  const data = await prisma.spare.findMany({
+    where: {
+      status: "published",
+    },
+    select: {
+      name: true,
+      description: true,
+      category: true,
+      isFeatured: true,
+      price: true,
+      images: true,
+      id: true,
+    },
+  });
+
+  if (!data) {
+    return notFound();
+  }
+  return data;
+}
+
+export default async function SparesPage() {
+  const data = await getData();
+  return <SpareParts data={data} />;
 }

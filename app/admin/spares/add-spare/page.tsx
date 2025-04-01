@@ -88,7 +88,7 @@ export default function AddNewSpare() {
                   placeholder={"Enter the Name "}
                 />
 
-                <p className={"text-sm text-red-500"}></p>
+                <p className={"text-sm text-red-500"}>{fields.name.errors}</p>
               </div>
 
               <div className={"flex flex-col gap-3 w-full"}>
@@ -102,7 +102,9 @@ export default function AddNewSpare() {
                   placeholder={"Enter the Category"}
                 />
 
-                <p className={"text-sm text-red-500"}></p>
+                <p className={"text-sm text-red-500"}>
+                  {fields.category.errors}
+                </p>
               </div>
               <div className={"flex flex-col gap-3 w-full"}>
                 <Label>Status</Label>
@@ -121,7 +123,7 @@ export default function AddNewSpare() {
                   </SelectContent>
                 </Select>
 
-                <p className={"text-sm text-red-500"}></p>
+                <p className={"text-sm text-red-500"}>{fields.status.errors}</p>
               </div>
             </div>
 
@@ -134,7 +136,9 @@ export default function AddNewSpare() {
                 placeholder={"Enter the description "}
               />
 
-              <p className={"text-sm text-red-500"}></p>
+              <p className={"text-sm text-red-500"}>
+                {fields.description.errors}
+              </p>
             </div>
 
             <div className={"flex flex-col gap-3 w-full"}>
@@ -157,7 +161,9 @@ export default function AddNewSpare() {
                 name={fields.isFeatured.name}
                 defaultValue={fields.isFeatured.initialValue}
               />
-              <p className={"text-sm text-red-500"}></p>
+              <p className={"text-sm text-red-500"}>
+                {fields.isFeatured.errors}
+              </p>
             </div>
 
             <div className={"flex flex-col gap-3"}>

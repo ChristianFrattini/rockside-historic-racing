@@ -6,6 +6,15 @@ const resend = new Resend(process.env.RESEND_KEY);
 export async function sendEmail(formData: FormData) {
   const data = Object.fromEntries(formData.entries());
 
+  const pageTitles: Record<string, string> = {
+    "contact-us": "General Enquiry",
+    showroom: "Vehicle Enquiry",
+    spares: "Spare Part Enquiry",
+  };
+
+  const pageKey = typeof data.page === "string" ? data.page : "contact-us";
+  const emailTitle = pageTitles[pageKey] || "General Enquiry";
+
   const emailContent = `
     <html>
       <head>
@@ -50,28 +59,30 @@ export async function sendEmail(formData: FormData) {
       </head>
       <body>
         <div class="container">
-          <div class="header">
-            ${data.carId ? "Vehicle Inquiry" : "General Enquiry"}
-          </div>
+          <div class="header">${emailTitle}</div>
           <div class="content">
             <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
             <p><strong>Email:</strong> ${data.email}</p>
             <p><strong>Phone:</strong> ${data.tel}</p>
-            ${data.carId ? `<p><strong>Car ID:</strong> ${data.carId}</p>` : ""}
             ${
-              data.carName
-                ? `<p><strong>Car Name:</strong> ${data.carName}</p>`
+              ["showroom", "spares"].includes(pageKey) && data.itemId
+                ? `<p><strong>Item ID:</strong> ${data.itemId}</p>`
+                : ""
+            }
+            ${
+              ["showroom", "spares"].includes(pageKey) && data.itemName
+                ? `<p><strong>Item Name:</strong> ${data.itemName}</p>`
                 : ""
             }
             <p><strong>Message:</strong></p>
             <p>${data.message}</p>
           </div>
           <div class="footer">
-          ${
-            data.carId
-              ? `<p>View item page: <a href="https://rockside-historic-racing.vercel.app/showroom/${data.carId}" target="_blank">Click here</a></p>`
-              : ""
-          }
+             ${
+               data.itemId && ["showroom", "spares"].includes(pageKey)
+                 ? `<p>View item page: <a href="https://rockside-historic-racing.vercel.app/${pageKey}/${data.itemId}" target="_blank">Click here</a></p>`
+                 : ""
+             }
           </div>
         </div>
       </body>
@@ -81,7 +92,7 @@ export async function sendEmail(formData: FormData) {
   await resend.emails.send({
     from: `${data.firstName} ${data.lastName} - Rockside <onboarding@resend.dev>`,
     to: "chrifrat1@gmail.com",
-    subject: data.carId ? "Vehicle Inquiry" : "General Enquiry",
+    subject: emailTitle,
     html: emailContent,
   });
 }

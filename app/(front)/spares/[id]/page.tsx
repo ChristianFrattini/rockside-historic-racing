@@ -1,21 +1,18 @@
 import ContactForm from "@/app/components/front-components/ContactForm";
 import FeaturedVehicles from "@/app/components/front-components/FeaturedVehicles";
 import ImageSlider from "@/app/components/front-components/ImageSlider";
-import SpareLink from "@/app/components/front-components/SpareLink";
 import prisma from "@/app/lib/db";
-import { Separator } from "@/components/ui/separator";
 import { notFound } from "next/navigation";
 import React from "react";
 
 async function getData(id: string) {
-  const data = await prisma.vehicle.findUnique({
+  const data = await prisma.spare.findUnique({
     where: {
       id: id,
     },
     select: {
       name: true,
-      brand: true,
-      year: true,
+      category: true,
       description: true,
       price: true,
       images: true,
@@ -29,7 +26,7 @@ async function getData(id: string) {
   return data;
 }
 
-export default async function VehicleRoute({
+export default async function SpareRoute({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -49,17 +46,17 @@ export default async function VehicleRoute({
           {/* Name, Brand, and Price */}
           <div className="space-y-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-              {data.name} ({data.year})
+              {data.name}
             </h1>
             <h2 className="text-lg md:text-xl font-medium text-gray-600">
-              {data.brand}
+              {data.category}
             </h2>
             <p className="text-2xl md:text-3xl font-bold text-gray-900">
               £{data.price}
             </p>
             <div className={"hidden md:hidden lg:block "}>
               <div className={"mt-8"}>
-                <ContactForm name={data.name} id={data.id} page={"showroom"} />
+                <ContactForm name={data.name} id={data.id} page={"spares"} />
               </div>
             </div>
           </div>
@@ -75,15 +72,11 @@ export default async function VehicleRoute({
           </p>
         </div>
         <div className={"lg:hidden"}>
-          <ContactForm name={data.name} id={data.id} page={"showroom"} />
+          <ContactForm name={data.name} id={data.id} page={"spares"} />
         </div>
 
         <div className="max-w-7xl ">
           <FeaturedVehicles />
-        </div>
-        <Separator className={"w-full border  border-customGrayBackground "} />
-        <div className={"flex justify-center items-center mt-5 "}>
-          <SpareLink />
         </div>
       </div>
     </>

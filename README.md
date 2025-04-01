@@ -1,7 +1,7 @@
 #######TODO#######
 
 ADMIN
-add validation error messages on spare parts form
+add validation error messages on spare parts form DONE
 implement search bar?
 use Sheet close in mobile responsive menu
 
@@ -14,7 +14,6 @@ change opening times
 add address
 optional - review typewriter effect in showroom page (not mobile responsive)
 change recipient email in email action and privacy page
-add contact us text homepage and contactus page DONE
 
 ##################
 SPARE PARTS?????????
