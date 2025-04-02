@@ -1,6 +1,6 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import VehicleCard from "./VehicleCard";
 
 import { Switch } from "@/components/ui/switch";
@@ -12,6 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import SpareLink from "./SpareLink";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 /*import {
   TypewriterEffect,
@@ -61,6 +69,7 @@ export default function Showroom({ data }: iAppProps) {
       className: "text-base text-gray-700 font-semibold leading-6",
     },
   ];*/
+
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [priceOrder, setPriceOrder] = useState<"highest" | "lowest" | null>(
     null,
@@ -72,23 +81,89 @@ export default function Showroom({ data }: iAppProps) {
   //  unique brands using a set
   const uniqueBrands = Array.from(new Set(data.map((item) => item.brand)));
 
-  // filtering
-  const filteredData = data
-    .filter((item) => (selectedBrand ? item.brand === selectedBrand : true))
-    .filter((item) => (showFeatured ? item.isFeatured : true))
-    .sort((a, b) => {
-      if (priceOrder === "highest") {
-        return b.price - a.price;
-      } else if (priceOrder === "lowest") {
-        return a.price - b.price;
-      } else if (yearOrder === "newest") {
-        return b.year - a.year;
-      } else if (yearOrder === "oldest") {
-        return a.year - b.year;
+  // Reset to page 1 when any filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedBrand, priceOrder, yearOrder, showFeatured]);
+
+  // Your existing filtering logic (this should operate on the full dataset)
+  const filteredData = useMemo(() => {
+    let result = [...data]; // Your original data
+
+    // Apply brand filter
+    if (selectedBrand) {
+      result = result.filter((item) => item.brand === selectedBrand);
+    }
+
+    // Apply featured filter
+    if (showFeatured) {
+      result = result.filter((item) => item.isFeatured);
+    }
+
+    // Apply price sorting
+    if (priceOrder === "highest") {
+      result.sort((a, b) => b.price - a.price);
+    } else if (priceOrder === "lowest") {
+      result.sort((a, b) => a.price - b.price);
+    }
+
+    // Apply year sorting
+    if (yearOrder === "newest") {
+      result.sort((a, b) => b.year - a.year);
+    } else if (yearOrder === "oldest") {
+      result.sort((a, b) => a.year - b.year);
+    }
+
+    return result;
+  }, [data, selectedBrand, priceOrder, yearOrder, showFeatured]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // Get current items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const getVisiblePages = (currentPage: number, totalPages: number) => {
+    const maxVisible = 3; // Maximum number of visible page buttons
+    let startPage, endPage;
+
+    if (totalPages <= maxVisible) {
+      // Less than maxVisible pages: show all
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // More than maxVisible pages: calculate start and end pages
+      const maxVisibleBeforeCurrent = Math.floor(maxVisible / 2);
+      const maxVisibleAfterCurrent = Math.ceil(maxVisible / 2) - 1;
+
+      if (currentPage <= maxVisibleBeforeCurrent) {
+        // Near the beginning
+        startPage = 1;
+        endPage = maxVisible;
+      } else if (currentPage + maxVisibleAfterCurrent >= totalPages) {
+        // Near the end
+        startPage = totalPages - maxVisible + 1;
+        endPage = totalPages;
       } else {
-        return 0;
+        // Somewhere in the middle
+        startPage = currentPage - maxVisibleBeforeCurrent;
+        endPage = currentPage + maxVisibleAfterCurrent;
       }
-    });
+    }
+
+    return Array.from(
+      { length: endPage - startPage + 1 },
+      (_, i) => startPage + i,
+    );
+  };
 
   return (
     <div className="py-12 lg:pt-[7rem] pt-[8.5rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -196,15 +271,120 @@ export default function Showroom({ data }: iAppProps) {
       <Separator
         className={"w-full border md:my-10 my-5  border-customGrayBackground"}
       />
+      {/* Results grid */}
       <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-10 mx-5"}>
         {filteredData.length > 0 ? (
-          filteredData.map((item) => <VehicleCard key={item.id} item={item} />)
+          currentItems.length > 0 ? (
+            currentItems.map((item) => (
+              <VehicleCard key={item.id} item={item} />
+            ))
+          ) : (
+            <p className="col-span-full text-center text-gray-500">
+              No results found.
+            </p>
+          )
         ) : (
           <p className="col-span-full text-center text-gray-500">
-            No results found.
+            No results match your filters.
           </p>
         )}
       </div>
+      {/* Pagination */}
+      {filteredData.length > itemsPerPage && (
+        <Pagination className="mt-8">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (currentPage > 1) paginate(currentPage - 1);
+                }}
+                className={
+                  currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                }
+              />
+            </PaginationItem>
+
+            {/* Always show first page */}
+            {currentPage > 3 && totalPages > 5 && (
+              <>
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      paginate(1);
+                    }}
+                    isActive={currentPage === 1}
+                  >
+                    1
+                  </PaginationLink>
+                </PaginationItem>
+                {currentPage > 4 && totalPages > 6 && (
+                  <PaginationItem>
+                    <span className="px-2">...</span>
+                  </PaginationItem>
+                )}
+              </>
+            )}
+
+            {/* Visible pages */}
+            {getVisiblePages(currentPage, totalPages).map((page) => (
+              <PaginationItem key={page}>
+                <PaginationLink
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    paginate(page);
+                  }}
+                  isActive={currentPage === page}
+                >
+                  {page}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            {/* Always show last page */}
+            {currentPage < totalPages - 2 && totalPages > 5 && (
+              <>
+                {currentPage < totalPages - 3 && totalPages > 6 && (
+                  <PaginationItem>
+                    <span className="px-2">...</span>
+                  </PaginationItem>
+                )}
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      paginate(totalPages);
+                    }}
+                    isActive={currentPage === totalPages}
+                  >
+                    {totalPages}
+                  </PaginationLink>
+                </PaginationItem>
+              </>
+            )}
+
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (currentPage < totalPages) paginate(currentPage + 1);
+                }}
+                className={
+                  currentPage === totalPages
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 }

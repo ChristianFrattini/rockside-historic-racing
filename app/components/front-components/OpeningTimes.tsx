@@ -34,7 +34,7 @@ export default function OpeningTimes() {
                   <td className="px-2 py-1.5 text-xs xs:text-sm sm:text-base text-gray-700 font-medium whitespace-nowrap w-1/2 sm:w-auto">
                     {time.day}
                   </td>
-                  {/* Hours Column - always right-aligned except on small mobile */}
+                  {/* Hours Column  */}
                   <td className="px-2 py-1 text-xs xs:text-sm sm:text-base text-gray-600 whitespace-nowrap text-right md:text-right">
                     {time.hours}
                   </td>

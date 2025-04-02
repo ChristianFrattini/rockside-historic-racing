@@ -1,6 +1,6 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import {
   Select,
@@ -11,6 +11,14 @@ import {
 } from "@/components/ui/select";
 
 import SparePartCard from "./SparePartCard";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 /*import {
   TypewriterEffect,
@@ -39,20 +47,79 @@ export default function SpareParts({ data }: iAppProps) {
   //  unique brands using a set
   const uniqueBrands = Array.from(new Set(data.map((item) => item.category)));
   // filtering
-  const filteredData = data
-    .filter((item) =>
-      selectedCategory ? item.category === selectedCategory : true,
-    )
-    .filter((item) => (showFeatured ? item.isFeatured : true))
-    .sort((a, b) => {
-      if (priceOrder === "highest") {
-        return b.price - a.price;
-      } else if (priceOrder === "lowest") {
-        return a.price - b.price;
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, priceOrder, showFeatured]);
+
+  // Filter and sort data
+  const filteredData = useMemo(() => {
+    let result = [...data];
+
+    // Apply category filter
+    if (selectedCategory) {
+      result = result.filter((item) => item.category === selectedCategory);
+    }
+
+    // Apply featured filter
+    if (showFeatured) {
+      result = result.filter((item) => item.isFeatured);
+    }
+
+    // Apply price sorting
+    if (priceOrder === "highest") {
+      result.sort((a, b) => b.price - a.price);
+    } else if (priceOrder === "lowest") {
+      result.sort((a, b) => a.price - b.price);
+    }
+
+    return result;
+  }, [data, selectedCategory, priceOrder, showFeatured]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // Get current items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const getVisiblePages = (currentPage: number, totalPages: number) => {
+    const maxVisible = 3; // Maximum number of visible page buttons
+    let startPage, endPage;
+
+    if (totalPages <= maxVisible) {
+      // Less than maxVisible pages: show all
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // More than maxVisible pages: calculate start and end pages
+      const maxVisibleBeforeCurrent = Math.floor(maxVisible / 2);
+      const maxVisibleAfterCurrent = Math.ceil(maxVisible / 2) - 1;
+
+      if (currentPage <= maxVisibleBeforeCurrent) {
+        // Near the beginning
+        startPage = 1;
+        endPage = maxVisible;
+      } else if (currentPage + maxVisibleAfterCurrent >= totalPages) {
+        // Near the end
+        startPage = totalPages - maxVisible + 1;
+        endPage = totalPages;
       } else {
-        return 0;
+        // Somewhere in the middle
+        startPage = currentPage - maxVisibleBeforeCurrent;
+        endPage = currentPage + maxVisibleAfterCurrent;
       }
-    });
+    }
+
+    return Array.from(
+      { length: endPage - startPage + 1 },
+      (_, i) => startPage + i,
+    );
+  };
 
   return (
     <div className="py-12 lg:pt-[7rem] pt-[8.5rem] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -66,7 +133,7 @@ export default function SpareParts({ data }: iAppProps) {
       {/*typewriter effect NOT mobile responsive*/}
       <p className={"text-sm text-gray-700 leading-7 md:mb-10 mb-5"}>
         Every vehicle has its own story, and the right spare parts keep it
-        running strong. Whether you`&apos;`re restoring a classic, upgrading
+        running strong. Whether you&apos;re restoring a classic, upgrading
         performance, or replacing worn components, we offer a carefully selected
         range of genuine and aftermarket parts. Explore our collection for the
         perfect fit. For any questions, do not hesitate to{" "}
@@ -134,15 +201,117 @@ export default function SpareParts({ data }: iAppProps) {
       />
       <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-10 mx-5"}>
         {filteredData.length > 0 ? (
-          filteredData.map((item) => (
-            <SparePartCard key={item.id} item={item} />
-          ))
+          currentItems.length > 0 ? (
+            currentItems.map((item) => (
+              <SparePartCard key={item.id} item={item} />
+            ))
+          ) : (
+            <p className="col-span-full text-center text-gray-500">
+              No results found.
+            </p>
+          )
         ) : (
           <p className="col-span-full text-center text-gray-500">
-            No results found.
+            No results match your filters.
           </p>
         )}
       </div>
+      {/* Pagination */}
+      {filteredData.length > itemsPerPage && (
+        <Pagination className="mt-8">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (currentPage > 1) paginate(currentPage - 1);
+                }}
+                className={
+                  currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                }
+              />
+            </PaginationItem>
+
+            {/* Always show first page */}
+            {currentPage > 3 && totalPages > 5 && (
+              <>
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      paginate(1);
+                    }}
+                    isActive={currentPage === 1}
+                  >
+                    1
+                  </PaginationLink>
+                </PaginationItem>
+                {currentPage > 4 && totalPages > 6 && (
+                  <PaginationItem>
+                    <span className="px-2">...</span>
+                  </PaginationItem>
+                )}
+              </>
+            )}
+
+            {/* Visible pages */}
+            {getVisiblePages(currentPage, totalPages).map((page) => (
+              <PaginationItem key={page}>
+                <PaginationLink
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    paginate(page);
+                  }}
+                  isActive={currentPage === page}
+                >
+                  {page}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            {/* Always show last page */}
+            {currentPage < totalPages - 2 && totalPages > 5 && (
+              <>
+                {currentPage < totalPages - 3 && totalPages > 6 && (
+                  <PaginationItem>
+                    <span className="px-2">...</span>
+                  </PaginationItem>
+                )}
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      paginate(totalPages);
+                    }}
+                    isActive={currentPage === totalPages}
+                  >
+                    {totalPages}
+                  </PaginationLink>
+                </PaginationItem>
+              </>
+            )}
+
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (currentPage < totalPages) paginate(currentPage + 1);
+                }}
+                className={
+                  currentPage === totalPages
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 }
