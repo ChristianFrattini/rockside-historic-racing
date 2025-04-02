@@ -10,6 +10,7 @@ import { CarFront, ChevronRight, Cog } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import prisma from "../lib/db";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData() {
   const [spareStats, vehicleStats] = await Promise.all([
@@ -52,6 +53,7 @@ If no published records exist, _count.id would be undefined, so || 0 ensures it 
 }
 
 export default async function AdminPage() {
+  noStore();
   const { vehicles, spares } = await getData();
   return (
     <>

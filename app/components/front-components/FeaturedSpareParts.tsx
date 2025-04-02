@@ -1,13 +1,14 @@
 import prisma from "@/app/lib/db";
 import React from "react";
-import VehicleCard from "./VehicleCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import SparePartCard from "./SparePartCard";
+import FeaturedVehicles from "./FeaturedVehicles";
 import { unstable_noStore as noStore } from "next/cache";
 
 async function getData() {
-  const data = await prisma.vehicle.findMany({
+  const data = await prisma.spare.findMany({
     where: {
       status: "published",
       isFeatured: true,
@@ -15,8 +16,7 @@ async function getData() {
     select: {
       id: true,
       name: true,
-      brand: true,
-      year: true,
+      category: true,
       price: true,
       images: true,
     },
@@ -27,7 +27,7 @@ async function getData() {
   return data;
 }
 
-export default async function FeaturedVehicles() {
+export default async function FeaturedSpareParts() {
   noStore();
   const data = await getData();
   return (
@@ -39,11 +39,11 @@ export default async function FeaturedVehicles() {
               "text-xl md:text-2xl font-semibold tracking-tight text-customBlack/80  "
             }
           >
-            Explore Our Featured Vehicles
+            Explore Our Featured Spare Parts
           </h2>
           <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 "}>
             {data.slice(0, 3).map((item) => (
-              <VehicleCard key={item.id} item={item} />
+              <SparePartCard key={item.id} item={item} />
             ))}
           </div>
           <div className={"flex items-center justify-center mt-5 w-full"}>
@@ -54,7 +54,7 @@ export default async function FeaturedVehicles() {
                 className={"bg-white/40 hover:bg-white/70 border-2  group"}
               >
                 <Link href={"/showroom"}>
-                  View More Vehicles{" "}
+                  View More Spares{" "}
                   <ChevronRight
                     className={
                       "h-5 w-5  group-hover:translate-x-1 duration-200"
@@ -68,7 +68,7 @@ export default async function FeaturedVehicles() {
           </div>
         </div>
       ) : (
-        ""
+        <FeaturedVehicles />
       )}
     </>
   );

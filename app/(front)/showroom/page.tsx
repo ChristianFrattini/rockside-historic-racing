@@ -1,9 +1,8 @@
 import Showroom from "@/app/components/front-components/Showroom";
-
 import prisma from "@/app/lib/db";
-
 import { notFound } from "next/navigation";
 import React from "react";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData() {
   const data = await prisma.vehicle.findMany({
@@ -29,6 +28,7 @@ async function getData() {
 }
 
 export default async function ShowroomPage() {
+  noStore();
   const data = await getData();
   return <Showroom data={data} />;
 }

@@ -1,9 +1,10 @@
 import ContactForm from "@/app/components/front-components/ContactForm";
-import FeaturedVehicles from "@/app/components/front-components/FeaturedVehicles";
+import FeaturedSpareParts from "@/app/components/front-components/FeaturedSpareParts";
 import ImageSlider from "@/app/components/front-components/ImageSlider";
 import prisma from "@/app/lib/db";
 import { notFound } from "next/navigation";
 import React from "react";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(id: string) {
   const data = await prisma.spare.findUnique({
@@ -33,6 +34,7 @@ export default async function SpareRoute({
 }) {
   //console.log(params);
   const { id } = await params;
+  noStore();
   const data = await getData(id);
   return (
     <>
@@ -76,7 +78,7 @@ export default async function SpareRoute({
         </div>
 
         <div className="max-w-7xl ">
-          <FeaturedVehicles />
+          <FeaturedSpareParts />
         </div>
       </div>
     </>

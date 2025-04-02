@@ -1,7 +1,6 @@
 #######TODO#######
 
 ADMIN
-add validation error messages on spare parts form DONE
 implement search bar?
 use Sheet close in mobile responsive menu
 
@@ -20,3 +19,6 @@ SPARE PARTS?????????
 
 ##################
 FOR LIVE DEMO LUNCH
+-domain setup
+-socials
+-personal (admin login) and public (contact) email. phone number.

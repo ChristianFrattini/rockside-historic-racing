@@ -6,6 +6,7 @@ import prisma from "@/app/lib/db";
 import { Separator } from "@/components/ui/separator";
 import { notFound } from "next/navigation";
 import React from "react";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(id: string) {
   const data = await prisma.vehicle.findUnique({
@@ -36,6 +37,7 @@ export default async function VehicleRoute({
 }) {
   //console.log(params);
   const { id } = await params;
+  noStore();
   const data = await getData(id);
   return (
     <>
