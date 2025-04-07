@@ -107,7 +107,15 @@ export default async function Spares() {
                         {formatDate(item.createdAt)}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        <Button variant={"outline"}>View</Button>
+                        <Button variant={"outline"} asChild>
+                          <Link
+                            href={`/spares/${item.id}`}
+                            target={"_blank"}
+                            rel="noopener noreferrer"
+                          >
+                            View
+                          </Link>
+                        </Button>
                       </TableCell>
                       <TableCell className={"text-end"}>
                         <Button variant={"ghost"} size={"icon"} asChild>

@@ -12,7 +12,11 @@ export async function addVehicle(previousState: unknown, formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
 
@@ -50,7 +54,11 @@ export async function editVehicle(prevState: unknown, formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
 
@@ -92,7 +100,11 @@ export async function deleteVehicle(formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
   const vehicleId = formData.get("vehicleId") as string;
@@ -134,8 +146,11 @@ export async function createBanner(prevState: unknown, formData: FormData) {
   const { getUser } = getKindeServerSession();
 
   const user = await getUser();
-
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
 
@@ -159,7 +174,11 @@ export async function deleteBanner(formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
   const bannerId = formData.get("bannerId") as string;
@@ -200,7 +219,11 @@ export async function addSpare(previousState: unknown, formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
 
@@ -240,7 +263,11 @@ export async function deleteSpare(formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
   const spareId = formData.get("spareId") as string;
@@ -283,7 +310,11 @@ export async function editSpare(prevState: unknown, formData: FormData) {
 
   const user = await getUser();
 
-  if (!user || user.email !== process.env.ADMIN_EMAIL) {
+  if (
+    !user ||
+    (user.email !== process.env.ADMIN_EMAIL &&
+      user.email !== process.env.DEV_EMAIL)
+  ) {
     return redirect("/");
   }
 

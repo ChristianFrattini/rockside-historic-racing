@@ -8,7 +8,11 @@ export default async function Login() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (user && user.email === process.env.ADMIN_EMAIL) {
+  if (
+    user &&
+    (user.email === process.env.ADMIN_EMAIL ||
+      user.email === process.env.DEV_EMAIL)
+  ) {
     return redirect("/admin");
   }
   return (
