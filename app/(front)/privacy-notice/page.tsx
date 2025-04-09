@@ -11,8 +11,8 @@ export default function PrivacyPage() {
         <div className="flex flex-col space-y-2 lg:space-y-4">
           <p className="text-xl font-semibold">1. Who We Are</p>
           <p className="text-base font-medium lg:pr-40">
-            Rockside Historic Racing operates this website. For any questions
-            regarding this privacy notice, contact us at:
+            Rockside Historic Racing Limited operates this website. For any
+            questions regarding this privacy notice, contact us at:
           </p>
           <div>
             <p className="text-base font-semibold">
