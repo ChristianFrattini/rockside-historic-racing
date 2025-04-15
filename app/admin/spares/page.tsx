@@ -101,7 +101,8 @@ export default async function Spares() {
                       </TableCell>
 
                       <TableCell className="hidden md:table-cell">
-                        {item.status}
+                        {item.status.charAt(0).toUpperCase() +
+                          item.status.slice(1)}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
                         {formatDate(item.createdAt)}

@@ -107,7 +107,8 @@ export default async function Vehicles() {
                         {item.year}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        {item.status}
+                        {item.status.charAt(0).toUpperCase() +
+                          item.status.slice(1)}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
                         {formatDate(item.createdAt)}

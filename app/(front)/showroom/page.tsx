@@ -19,6 +19,9 @@ async function getData() {
       images: true,
       id: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   if (!data) {

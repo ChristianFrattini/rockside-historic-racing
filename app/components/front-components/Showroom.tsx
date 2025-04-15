@@ -176,19 +176,19 @@ export default function Showroom({ data }: iAppProps) {
       {/*<TypewriterEffectSmooth className={"mb-4"} words={words} />*/}{" "}
       {/*typewriter effect NOT mobile responsive*/}
       <p className={"text-sm text-gray-700 leading-7 md:mb-10 mb-5"}>
-        **Unlike modern cars, each classic car is genuinely one-of-a-kind. Some
-        cars will be original, while others may have modifications. Many will
-        have been refurbished, and some completely rebuilt. We always recommend
-        viewing a vehicle in person when comparing seemingly similar options.
-        For the ultimate buying experience, we invite you to visit our showroom
-        in person. For any question do not hesitate to{" "}
+        Unlike modern cars, every classic car has its own unique story. Some
+        remain in original condition, while others feature modifications or have
+        been refurbished — even fully rebuilt. That&apos;s why we always
+        recommend viewing vehicles in person when comparing seemingly similar
+        models. For the best possible buying experience, we invite you to visit
+        our showroom. For any question do not hesitate to{" "}
         <a
           href={"/contact-us"}
           className="text-blue-600 hover:text-blue-800 underline"
         >
           contact us
         </a>
-        .**
+        .
       </p>
       <div
         className={
