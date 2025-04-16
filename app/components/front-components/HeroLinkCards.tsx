@@ -21,7 +21,7 @@ export default function HeroLinkCards() {
       <motion.div
         whileHover={{ scale: 1.02 }} // Scale up slightly on hover
         transition={{ type: "tween", duration: 0.175 }} // Springy effect
-        className="group sm:col-span-3 sm:rounded-lg overflow-hidden relative h-80"
+        className="group sm:col-span-3 sm:rounded-md overflow-hidden relative h-80"
       >
         <Image
           src={showroom}
@@ -50,7 +50,7 @@ export default function HeroLinkCards() {
         <motion.div
           whileHover={{ scale: 1.05 }} // Scale up slightly on hover
           transition={{ type: "tween", duration: 0.175 }} // Springy effect
-          className="group sm:rounded-lg overflow-hidden relative flex-1"
+          className="group sm:rounded-md overflow-hidden relative flex-1"
         >
           <Image
             src={about}
@@ -70,7 +70,7 @@ export default function HeroLinkCards() {
         <motion.div
           whileHover={{ scale: 1.05 }} // Scale up slightly on hover
           transition={{ type: "tween", duration: 0.175 }} // Springy effect
-          className="group sm:rounded-lg overflow-hidden relative flex-1 bg-purpleRed"
+          className="group sm:rounded-md overflow-hidden relative flex-1 bg-purpleRed"
         >
           <Link href="/contact-us">
             <MessageSquareMore

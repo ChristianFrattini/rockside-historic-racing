@@ -13,7 +13,7 @@ export const VehicleSchema = z.object({
     .max(2026, "Year must be lower than 2026"),
   description: z.string(),
   status: z.enum(["draft", "published", "archived"]),
-  price: z.number().min(1),
+  price: z.number().min(0),
   images: z.array(z.string()).min(1, "At least one image is required"),
   isFeatured: z.boolean().optional(),
 });

@@ -42,7 +42,13 @@ export default function VehicleCard({ item }: iAppProps) {
             {item.name} ({item.year})
           </h3>
           <p className="text-xs sm:text-sm text-gray-300 mb-1">{item.brand}</p>
-          <p className="text-xs sm:text-sm font-semibold">£{item.price}</p>
+          {item.price === 0 ? (
+            <p className="text-xs sm:text-sm font-semibold">
+              Price On Application
+            </p>
+          ) : (
+            <p className="text-xs sm:text-sm font-semibold">£{item.price}</p>
+          )}
         </div>
       </motion.div>
     </Link>

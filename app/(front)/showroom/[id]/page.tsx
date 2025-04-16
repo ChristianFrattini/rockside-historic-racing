@@ -7,6 +7,14 @@ import { Separator } from "@/components/ui/separator";
 import { notFound } from "next/navigation";
 import React from "react";
 import { unstable_noStore as noStore } from "next/cache";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Info } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 async function getData(id: string) {
   const data = await prisma.vehicle.findUnique({
@@ -56,9 +64,40 @@ export default async function VehicleRoute({
             <h2 className="text-lg md:text-xl font-medium text-gray-600">
               {data.brand}
             </h2>
-            <p className="text-2xl md:text-3xl font-bold text-gray-900">
-              £{data.price}
-            </p>
+            {data.price === 0 ? (
+              <div className={"flex gap-5 items-center "}>
+                <p className="text-xl md:text-3xl font-bold text-gray-900">
+                  P.O.A.
+                </p>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="p-1 hover:bg-gray-100 rounded-full transition-colors duration-200 flex gap-1">
+                      <Info className="w-6 h-6 text-gray-700" /> Info
+                    </TooltipTrigger>
+                    <TooltipContent
+                      side="top"
+                      align="center"
+                      className="max-w-xs rounded-xl bg-white text-gray-800 shadow-lg border border-gray-300 p-4"
+                    >
+                      <div className="flex flex-col gap-2">
+                        <p className="text-sm font-medium">
+                          Price On Application
+                        </p>
+                        <p className="text-xs leading-relaxed tracking-wide text-gray-600">
+                          The price for this item is currently unavailable.
+                          Please get in touch for more information.
+                        </p>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            ) : (
+              <p className="text-2xl md:text-3xl font-bold text-gray-900">
+                £{data.price}
+              </p>
+            )}
+
             <div className={"hidden md:hidden lg:block "}>
               <div className={"mt-8"}>
                 <ContactForm name={data.name} id={data.id} page={"showroom"} />

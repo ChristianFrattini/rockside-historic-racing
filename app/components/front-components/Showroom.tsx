@@ -71,9 +71,9 @@ export default function Showroom({ data }: iAppProps) {
   ];*/
 
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
-  const [priceOrder, setPriceOrder] = useState<"highest" | "lowest" | null>(
-    null,
-  );
+  const [priceOrder, setPriceOrder] = useState<
+    "highest" | "lowest" | "poa" | null
+  >(null);
 
   const [yearOrder, setYearOrder] = useState<"newest" | "oldest" | null>(null);
   const [showFeatured, setShowFeatured] = useState<boolean>(false);
@@ -98,6 +98,13 @@ export default function Showroom({ data }: iAppProps) {
     // Apply featured filter
     if (showFeatured) {
       result = result.filter((item) => item.isFeatured);
+    }
+
+    // Apply price filtering before sorting
+    if (priceOrder === "poa") {
+      result = result.filter((item) => item.price === 0);
+    } else if (priceOrder === "highest" || priceOrder === "lowest") {
+      result = result.filter((item) => item.price > 0);
     }
 
     // Apply price sorting
@@ -235,6 +242,7 @@ export default function Showroom({ data }: iAppProps) {
             <SelectContent className="border-none shadow-none">
               <SelectItem value="highest">Highest</SelectItem>
               <SelectItem value="lowest">Lowest</SelectItem>
+              <SelectItem value={"poa"}>Price On Application (POA)</SelectItem>
               <SelectItem value="clear">Clear</SelectItem>
             </SelectContent>
           </Select>

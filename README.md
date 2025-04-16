@@ -2,7 +2,6 @@
 
 ADMIN
 implement search bar?
-use Sheet close in mobile responsive menu
 
 ############################################################################
 
@@ -13,9 +12,6 @@ change opening times
 add address
 optional - review typewriter effect in showroom page (not mobile responsive)
 change recipient email in email action and privacy page
-
-##################
-SPARE PARTS?????????
 
 ##################
 FOR LIVE DEMO LUNCH

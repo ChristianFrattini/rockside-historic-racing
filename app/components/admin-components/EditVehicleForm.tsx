@@ -163,7 +163,9 @@ export default function EditVehicleForm({ data }: iAppProps) {
               </p>
             </div>
             <div className={"flex flex-col gap-3 w-full"}>
-              <Label>Price</Label>
+              <Label>
+                Price (Enter "0" to apply POA - Price On Application)
+              </Label>
               <Input
                 key={fields.price.key}
                 name={fields.price.name}
