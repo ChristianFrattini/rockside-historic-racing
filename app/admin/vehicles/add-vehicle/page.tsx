@@ -135,7 +135,7 @@ export default function AddNewVehicle() {
 
             <div className={"flex flex-col gap-3 w-full"}>
               <Label>
-                Price (Enter "0" to apply POA - Price On Application)
+                Price (Enter &quot;0&quot; to apply POA - Price On Application)
               </Label>
               <Input
                 key={fields.price.key}

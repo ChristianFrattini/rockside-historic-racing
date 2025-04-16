@@ -14,7 +14,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 async function getData(id: string) {
   const data = await prisma.vehicle.findUnique({
