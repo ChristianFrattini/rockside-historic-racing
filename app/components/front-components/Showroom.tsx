@@ -280,7 +280,7 @@ export default function Showroom({ data }: iAppProps) {
         className={"w-full border md:my-10 my-5  border-customGrayBackground"}
       />
       {/* Results grid */}
-      <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-10 mx-5"}>
+      <div className={"mt-3 grid md:grid-cols-2 xl:grid-cols-3 gap-10 mx-5"}>
         {filteredData.length > 0 ? (
           currentItems.length > 0 ? (
             currentItems.map((item) => (

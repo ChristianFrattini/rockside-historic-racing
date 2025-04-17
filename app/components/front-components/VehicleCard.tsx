@@ -38,7 +38,7 @@ export default function VehicleCard({ item }: iAppProps) {
         />
 
         <div className="absolute bottom-0 left-0 p-4 text-white pointer-events-none w-full">
-          <h3 className="text-base sm:text-lg font-bold mb-1 text-center">
+          <h3 className="text-base sm:text-lg font-bold mb-1 ">
             {item.name} ({item.year})
           </h3>
           <div className={"flex justify-between items-center  "}>

@@ -19,4 +19,4 @@ FOR LIVE DEMO LUNCH
 -socials
 -personal (admin login) and public (contact) email. phone number.
 
-fixed tooltip and changed vehicle card layout
+fixed tooltip and changed vehicle card layout added styles to footer cards
