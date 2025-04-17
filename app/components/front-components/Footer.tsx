@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         {/* Logos */}
-        <div className="w-full lg:w-[40rem]">
+        <div className="w-full lg:w-[30rem] xl:w-[45rem]">
           <InfiniteMovingCards
             images={images}
             direction="left"

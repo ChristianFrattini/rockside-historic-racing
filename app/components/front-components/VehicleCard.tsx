@@ -19,7 +19,7 @@ export default function VehicleCard({ item }: iAppProps) {
   return (
     <Link href={`/showroom/${item.id}`}>
       <motion.div
-        className="relative w-full h-[12rem] sm:h-[16rem] md:h-[18rem] lg:h-[20rem] rounded-lg overflow-hidden shadow-lg cursor-pointer"
+        className="relative w-full h-[14rem] sm:h-[16rem] md:h-[18rem] lg:h-[20rem] rounded-lg overflow-hidden shadow-lg cursor-pointer"
         // whileHover={{ scale: 1.05 }}
       >
         {/* Image */}
@@ -37,18 +37,23 @@ export default function VehicleCard({ item }: iAppProps) {
           whileHover={{ opacity: 1 }}
         />
 
-        <div className="absolute bottom-0 left-0 p-4 text-white pointer-events-none">
-          <h3 className="text-base sm:text-lg font-bold mb-1">
+        <div className="absolute bottom-0 left-0 p-4 text-white pointer-events-none w-full">
+          <h3 className="text-base sm:text-lg font-bold mb-1 text-center">
             {item.name} ({item.year})
           </h3>
-          <p className="text-xs sm:text-sm text-gray-300 mb-1">{item.brand}</p>
-          {item.price === 0 ? (
-            <p className="text-xs sm:text-sm font-semibold">
-              Price On Application
+          <div className={"flex justify-between items-center  "}>
+            {/*lg:flex-col?????*/}
+            <p className="text-xs sm:text-sm text-gray-300 mb-1">
+              {item.brand}
             </p>
-          ) : (
-            <p className="text-xs sm:text-sm font-semibold">£{item.price}</p>
-          )}
+            {item.price === 0 ? (
+              <p className="text-xs sm:text-sm font-semibold">
+                Price On Application
+              </p>
+            ) : (
+              <p className="text-xs sm:text-sm font-semibold">£{item.price}</p>
+            )}
+          </div>
         </div>
       </motion.div>
     </Link>

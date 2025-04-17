@@ -18,3 +18,5 @@ FOR LIVE DEMO LUNCH
 -domain setup
 -socials
 -personal (admin login) and public (contact) email. phone number.
+
+fixed tooltip and changed vehicle card layout
