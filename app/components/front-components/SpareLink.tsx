@@ -6,11 +6,11 @@ export default function SpareLink() {
   return (
     <>
       <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
-        <p className="text-sm md:text-base text-gray-700 font-semibold leading-6">
+        <p className="text-sm md:text-base text-gray-700 font-semibold leading-7 tracking-wide">
           Looking for a part replacement for one of your cars?
         </p>
         <Button asChild className="w-full sm:w-auto">
-          <Link href="/spares" className="text-sm px-4 leading-6">
+          <Link href="/spares" className="text-sm px-4 leading-7 tracking-wide">
             Explore available Spare Parts
           </Link>
         </Button>

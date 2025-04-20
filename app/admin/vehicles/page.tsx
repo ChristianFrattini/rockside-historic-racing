@@ -64,7 +64,7 @@ export default async function Vehicles() {
             Manage your vehicles and view their details
           </CardDescription>
         </CardHeader>
-        <CardContent className={"overflow-auto max-h-[65vh]"}>
+        <CardContent className={"overflow-auto max-h-[64vh]"}>
           <div className={"overflow-auto"}>
             {data.length > 0 ? (
               <Table>

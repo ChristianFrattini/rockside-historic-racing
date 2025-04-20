@@ -131,7 +131,11 @@ export default function SpareParts({ data }: iAppProps) {
       </p>
       {/*<TypewriterEffectSmooth className={"mb-4"} words={words} />*/}{" "}
       {/*typewriter effect NOT mobile responsive*/}
-      <p className={"text-sm text-gray-700 leading-7 md:mb-10 mb-5"}>
+      <p
+        className={
+          "text-sm text-gray-800 leading-7 tracking-wider md:mb-10 mb-5"
+        }
+      >
         Every vehicle has its own story, and the right spare parts keep it
         running strong. Whether you&apos;re restoring a classic, upgrading
         performance, or replacing worn components, we offer a carefully selected
