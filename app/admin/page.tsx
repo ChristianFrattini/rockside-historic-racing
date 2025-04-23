@@ -11,6 +11,7 @@ import Link from "next/link";
 import React from "react";
 import prisma from "../lib/db";
 import { unstable_noStore as noStore } from "next/cache";
+import Footer from "../components/admin-components/Footer";
 
 async function getData() {
   const [spareStats, vehicleStats] = await Promise.all([
@@ -151,6 +152,9 @@ export default async function AdminPage() {
             </Button>
           </CardFooter>
         </Card>
+      </div>
+      <div className={"flex items-center justify-center mt-8"}>
+        <Footer />
       </div>
     </>
   );

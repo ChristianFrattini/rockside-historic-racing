@@ -110,7 +110,6 @@ export default async function AdminLayout({
         {children}
         <Toaster />
       </main>
-      <Footer />
     </div>
   );
 }
