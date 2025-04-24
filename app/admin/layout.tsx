@@ -23,7 +23,6 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { Toaster } from "@/components/ui/toaster";
-import Footer from "../components/admin-components/Footer";
 
 export default async function AdminLayout({
   children,
