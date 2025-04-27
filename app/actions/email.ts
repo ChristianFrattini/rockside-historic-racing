@@ -91,7 +91,7 @@ export async function sendEmail(formData: FormData) {
 
   await resend.emails.send({
     from: `${data.firstName} ${data.lastName} - Rockside <onboarding@resend.dev>`,
-    to: "chrifrat1@gmail.com",
+    to: "sales.sibsport@gmail.com",
     subject: emailTitle,
     html: emailContent,
   });

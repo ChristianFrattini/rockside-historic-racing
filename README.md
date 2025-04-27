@@ -6,17 +6,11 @@ implement search bar?
 ############################################################################
 
 FRONT
-change pin position on the map
-change coordinates on the "get directions" button in the contact us page
-change opening times
-add address
 optional - review typewriter effect in showroom page (not mobile responsive)
-change recipient email in email action and privacy page
+change recipient email in email action and privacy page DONE - TO VERIFY
 
 ##################
 FOR LIVE DEMO LUNCH
 -domain setup
 -socials
--personal (admin login) and public (contact) email. phone number.
-
-fixed tooltip and changed vehicle card layout added styles to footer cards
+-personal (admin login) and public (contact) email. phone number. CREATE ADMIN USER

@@ -90,8 +90,8 @@ export default function ContactForm({ page, name, id }: ContactFormProps) {
         className={"text-gray-600 mt-3  dark:text-white/80  px-2 font-medium "}
       >
         Please contact us through the form above or alternatively by phoning{" "}
-        <a className="underline" href="tel:07722 78898">
-          07722 78898
+        <a className="underline" href="tel:07802775111">
+          07802775111
         </a>
       </p>
     </motion.div>

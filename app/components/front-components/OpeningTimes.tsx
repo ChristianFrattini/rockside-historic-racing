@@ -17,7 +17,12 @@ export default function OpeningTimes() {
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           <Clock className="h-8 w-8 sm:h-12 sm:w-12" />{" "}
-          <h2 className="text-xl sm:text-2xl font-bold">Opening Times</h2>{" "}
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold">Opening Times</h2>{" "}
+            <p className="text-sm sm:text-base text-gray-600 font-normal underline">
+              By appointment only
+            </p>
+          </div>
         </div>
 
         <Separator className="border-[2px] border-customRed rounded-xl" />

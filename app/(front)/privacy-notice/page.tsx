@@ -21,7 +21,7 @@ export default function PrivacyPage() {
                 className="underline font-normal"
                 href="mailto:email@email.com"
               >
-                email@email.com
+                sales.sibsport@gmail.com
               </a>
             </p>
             <div className="flex flex-row">

@@ -18,10 +18,10 @@ export default function Location() {
           }
         >
           <p className={"text-xl font-semibold"}>Rockside Historic Racing</p>
-          <p className={"font-normal text-sm"}>Address Line 1</p>
-          <p className={"font-normal text-sm"}>Address Line 2</p>
-          <p className={"font-normal text-sm"}>City</p>
-          <p className={"font-normal text-sm"}>Postcode</p>
+          <p className={"font-normal text-sm"}>6</p>
+          <p className={"font-normal text-sm"}>Hadrians Court</p>
+          <p className={"font-normal text-sm"}>Gateshead</p>
+          <p className={"font-normal text-sm"}>NE11 0XW</p>
         </div>
       </div>
     </>

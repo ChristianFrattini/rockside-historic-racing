@@ -34,8 +34,8 @@ export default function ContactUsPage() {
           variant={"secondary"}
           className={"w-full mt-1 text-xl"}
           onClick={() => {
-            const latitude = 54.96;
-            const longitude = -1.6;
+            const latitude = 54.9289352;
+            const longitude = -1.6140139;
             const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
             window.open(url, "_blank"); // Opens in a new tab
           }}

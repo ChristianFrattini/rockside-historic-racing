@@ -17,8 +17,8 @@ import { defaults as defaultInteractions } from "ol/interaction";
 
 const MapComponent = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const latitude = 54.96;
-  const longitude = -1.6;
+  const latitude = 54.9289352;
+  const longitude = -1.6140139;
 
   const iconUrl = "/icons/map-pin.svg"; // Local file in /public
 
@@ -36,7 +36,7 @@ const MapComponent = () => {
       ],
       view: new View({
         center: coordinates, // Center the map at the location
-        zoom: 11,
+        zoom: 11.5,
       }),
       interactions: defaultInteractions({
         mouseWheelZoom: false,
