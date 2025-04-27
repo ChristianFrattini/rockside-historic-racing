@@ -22,6 +22,12 @@ import { Button } from "@/components/ui/button";
 
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const links = [
   {
@@ -69,17 +75,61 @@ export default function NavBar() {
         }   px-7  transition-all ease-in-out duration-500 lg:backdrop-blur-xl backdrop-blur-md opacity-95 lg:opacity-90`}
       >
         <div className={""}>
-          <Link href={"/"}>
-            <Image
-              alt={"logo"}
-              src={"/Rockside_logo.jpeg"}
-              priority
-              height={isScrolled ? 155 : 190}
-              width={isScrolled ? 255 : 290}
-              className={
-                "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90 "
-              }
-            />
+          <Link href={"/"} className={"flex items-center justify-center"}>
+            <Carousel
+              opts={{
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                  stopOnInteraction: false,
+                  stopOnLastSnap: false,
+                }),
+              ]}
+              className={`${
+                isScrolled ? "w-[260px] md:w-[270px]" : "w-[290px] md:w-[300px]"
+              } transition-all ease-in-out duration-500 `}
+            >
+              <CarouselContent>
+                <CarouselItem>
+                  <Image
+                    alt={"logo"}
+                    src={"/Rockside_logo.jpeg"}
+                    priority
+                    height={isScrolled ? 155 : 190}
+                    width={isScrolled ? 255 : 290}
+                    className={
+                      "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90"
+                    }
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <Image
+                    alt={"logo"}
+                    src={"/rockside_classic.png"}
+                    priority
+                    height={isScrolled ? 155 : 190}
+                    width={isScrolled ? 255 : 290}
+                    className={
+                      "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90"
+                    }
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <Image
+                    alt={"logo"}
+                    src={"/rockside_sibsport.png"}
+                    priority
+                    height={isScrolled ? 155 : 190}
+                    width={isScrolled ? 255 : 290}
+                    className={
+                      "object-cover transition-all duration-500 ease-in-out backdrop-blur-xl opacity-90"
+                    }
+                  />
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
           </Link>
         </div>
         <div className={"hidden lg:block"}>

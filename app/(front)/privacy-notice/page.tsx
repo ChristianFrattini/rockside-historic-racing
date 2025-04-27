@@ -19,7 +19,7 @@ export default function PrivacyPage() {
               Email:{" "}
               <a
                 className="underline font-normal"
-                href="mailto:email@email.com"
+                href="mailto:sales.sibsport@gmail.com"
               >
                 sales.sibsport@gmail.com
               </a>
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
             <div className="flex flex-row">
               <p className="text-base font-semibold">Address: </p>
               <p className="ml-1">
-                Address Line 1, Address Line 2, City, Postcode
+                6, Hadrians Court, Gateshead, NE11 0XW, United Kingdom
               </p>
             </div>
           </div>
@@ -104,8 +104,11 @@ export default function PrivacyPage() {
           </ul>
           <p className="text-base font-semibold">
             To exercise these rights, contact us at:{" "}
-            <a className="underline font-normal" href="mailto:email@email.com">
-              email@email.com
+            <a
+              className="underline font-normal"
+              href="mailto:sales.sibsport@gmail.com"
+            >
+              sales.sibsport@gmail.com
             </a>
           </p>
         </div>
