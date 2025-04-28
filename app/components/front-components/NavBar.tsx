@@ -82,7 +82,7 @@ export default function NavBar() {
               }}
               plugins={[
                 Autoplay({
-                  delay: 2000,
+                  delay: 10000,
                   stopOnInteraction: false,
                   stopOnLastSnap: false,
                 }),
