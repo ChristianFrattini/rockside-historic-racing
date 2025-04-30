@@ -42,12 +42,12 @@ export default async function FeaturedVehicles() {
             Explore Our Featured Vehicles
           </h2>
           <div className={"mt-3 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 "}>
-            {data.slice(0, 3).map((item) => (
+            {data.slice(0, 6).map((item) => (
               <VehicleCard key={item.id} item={item} />
             ))}
           </div>
           <div className={"flex items-center justify-center mt-5 w-full"}>
-            {data.length > 3 ? (
+            {data.length > 6 ? (
               <Button
                 asChild
                 variant={"outline"}
