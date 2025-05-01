@@ -7,6 +7,7 @@ import MapSection from "../components/front-components/MapSection";
 export default function IndexPage() {
   return (
     <div>
+      <h1 className="sr-only">The Online Showroom for Historic Racers</h1>
       <div className={"bg-greyish"}>
         <Hero />
         <HeroLinkCards />
