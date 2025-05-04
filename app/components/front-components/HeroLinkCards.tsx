@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import showroom from "@/public/showroom.jpg";
 import about from "@/public/about.jpg";
-import { MessageSquareMore } from "lucide-react";
+import contact from "@/public/contact.jpg";
 import { motion } from "framer-motion";
 
 export default function HeroLinkCards() {
@@ -72,18 +72,18 @@ export default function HeroLinkCards() {
           transition={{ type: "tween", duration: 0.175 }} // Springy effect
           className="group sm:rounded-md overflow-hidden relative flex-1 bg-purpleRed"
         >
-          <Link href="/contact-us">
-            <MessageSquareMore
-              className={
-                "h-full w-full flex items-center justify-center scale-x-[-1]"
-              }
-            />
-            <div className="absolute inset-0 bg-black/40" />{" "}
-            {/* Dark overlay */}
-            <div className="absolute inset-0 p-4 flex items-end  ">
-              <h3 className="text-white font-semibold">Contact us</h3>
-            </div>{" "}
-          </Link>
+          <Image
+            src={contact}
+            alt="All Products Image"
+            className="object-cover w-full h-full"
+            fill // Ensures the image fills the container
+          />
+          <div className="absolute inset-0 bg-black/40" /> {/* Dark overlay */}
+          <div className="absolute inset-0 p-4 flex items-end">
+            <Link href="/about-us">
+              <h3 className="text-white font-semibold">Contact Us</h3>
+            </Link>
+          </div>
         </motion.div>
       </motion.div>
     </motion.div>
